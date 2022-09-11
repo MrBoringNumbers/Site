@@ -104,15 +104,15 @@ donut_img.onload = function(){
         // Decide Fade In
         if ((new Date().getTime() - startTime) > 50) {canvas.style.transition = 'opacity 700ms';}
 
-        // Show Indicator
-        globe_indicator.style.opacity = 1;
-
         canvas.style.opacity = '1';
         window.addEventListener('load', function() {
 
             const loadSpeed = window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"]
             console.log("PERF:", loadSpeed, "ms")
             if (loadSpeed > 1500) {return}
+
+            // Show Indicator
+            globe_indicator.style.opacity = 1;
             
             // Set Interval
             spinInterval = setInterval(requestAnimationFrame,1000/frameRate,Step);

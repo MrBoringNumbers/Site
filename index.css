@@ -315,8 +315,7 @@ form textarea {
     left: 53%;
     top: 63%;
     opacity: 0;
-    /*transition: opacity 200ms 300ms;*/
-    transition: opacity 1s 500ms;
+    transition: opacity 1s;
 }
 
 @media (max-width: 1000px) {
