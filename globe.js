@@ -28,6 +28,7 @@ const ypos = 540 - (260/2)
 function checkTime() {
     if (loadedFrames > 10) {
         var avg_time = (new Date().getTime() - preload_start_time - 2000) / loadedFrames
+        console.log('Average:', avg_time, 'Total', new Date().getTime() - preload_start_time, 'Loaded Frames:', loadedFrames)
         if (avg_time > maxTimeAvg) {
             console.log('Avg frame speed too low:', 'Average:', avg_time, 'Total', new Date().getTime() - preload_start_time, 'Loaded Frames:', loadedFrames)
             exceedTimeAvgFlag = true
