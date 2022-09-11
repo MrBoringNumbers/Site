@@ -10,10 +10,6 @@ const context = canvas.getContext("2d");
 canvas.width=1600;
 canvas.height=1080;
 
-// maxTimeAvg is in milliseconds
-var maxTimeAvg = 20
-var exceedTimeAvgFlag = false
-
 var currentFrame = index => ((window.ImageSupport) ? `./globe (webp)/${index.toString().padStart(4, '0')}.webp` : `./globe (jpeg)/${index.toString().padStart(4, '0')}.jpeg`);
 
 var loadedFrames = 0;
@@ -26,17 +22,6 @@ const progress = document.getElementById("progress");
 const xpos = 800 - (260/2)
 const ypos = 540 - (260/2)
 
-function checkTime() {
-    if (loadedFrames > 10) {
-        var avg_time = (new Date().getTime() - preload_start_time - 2000) / loadedFrames
-        console.log('Average:', avg_time, 'Total', new Date().getTime() - preload_start_time, 'Loaded Frames:', loadedFrames)
-        if (avg_time > maxTimeAvg) {
-            console.log('Avg frame speed too low:', 'Average:', avg_time, 'Total', new Date().getTime() - preload_start_time, 'Loaded Frames:', loadedFrames)
-            exceedTimeAvgFlag = true
-        }
-    }
-}
-
 function incrementLoadedFrames() {
     loadedFrames += 1;
     if (loadedFrames == frameCount) {
@@ -45,7 +30,6 @@ function incrementLoadedFrames() {
         loadElement.style.display = ''
         progress.innerHTML = Math.floor( (loadedFrames/frameCount)*100 );
     }
-    checkTime()
 }
 
 
@@ -59,11 +43,6 @@ if (window.Worker) {
     worker = new Worker('globe_preload_web_worker.js')
 
     function workerListen(event) {
-        if (exceedTimeAvgFlag) {
-            CancelPreload()
-            worker.removeEventListener('message', workerListen)
-            return;
-        }
         images[event.data[0]] = new Image();
         images[event.data[0]].src = URL.createObjectURL(event.data[1])
         incrementLoadedFrames()
@@ -86,11 +65,6 @@ function preloadImages() {
 
     for (let i = 0; i < frameCount; i++) {
 
-        if (exceedTimeAvgFlag) {
-            CancelPreload()
-            return;
-        }
-
         if (worker) {worker.postMessage([i, currentFrame(i)])}
 
         else {
@@ -102,15 +76,6 @@ function preloadImages() {
     }
 
 };
-
-const GlobeLoadBtn = document.getElementById("Globe_Load_Btn")
-function CancelPreload() {
-    clearInterval(spinInterval);
-    loadedFrames = 0;
-    loadElement.style.display = 'none'
-    GlobeLoadBtn.style.display = ""
-    console.log('Preload canceled.')
-}
 
 // Pause globe when not in view
 spinInterval = null
@@ -144,6 +109,10 @@ donut_img.onload = function(){
 
         canvas.style.opacity = '1';
         window.addEventListener('load', function() {
+
+            const loadSpeed = window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"]
+            console.log("PERF:", loadSpeed, "ms")
+            if (loadSpeed > 1500) {return}
             
             // Set Interval
             spinInterval = setInterval(requestAnimationFrame,1000/frameRate,Step);
@@ -245,7 +214,3 @@ globe.addEventListener('mouseup', EndMove);
 globe.addEventListener('touchstart', StartMove, {passive: true});
 globe.addEventListener('touchend', EndMove, {passive: true});
 globe.addEventListener('touchcancel', EndMove, {passive: true});
-
-window.addEventListener('load', function() {
-    console.log("PERF:", window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"], "ms")
-})
