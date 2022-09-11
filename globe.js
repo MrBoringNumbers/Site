@@ -10,7 +10,8 @@ const context = canvas.getContext("2d");
 canvas.width=1600;
 canvas.height=1080;
 
-var maxTimeAvg = 100
+// maxTimeAvg is in milliseconds
+var maxTimeAvg = 20
 var exceedTimeAvgFlag = false
 
 var currentFrame = index => ((window.ImageSupport) ? `./globe (webp)/${index.toString().padStart(4, '0')}.webp` : `./globe (jpeg)/${index.toString().padStart(4, '0')}.jpeg`);
