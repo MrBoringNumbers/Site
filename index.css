@@ -79,6 +79,7 @@ body {
 }
 
 .loading_indicator {
+    display: none;
     position: absolute;
     bottom: 50px;
     color: #1b6497;
