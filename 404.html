@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="image-support-check.js"></script>
+
+<title>SixtySevenRadio&#x2122</title>
+
+<link rel="icon" type="image/x-icon" href="assets/fav.ico">
+<link rel="apple-touch-icon" href="./assets/iphone-icon.png"/>
+<link rel="stylesheet" href="general_style.css">
+<link rel="stylesheet" media="screen and (max-width: 800px)" href="general_style.mobile.css">
+<link rel="stylesheet" href="404.css">
+<link rel="stylesheet" media="screen and (max-width: 800px)" href="404.mobile.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12023e">
+
+<meta name='viewport' content='initial-scale=1, viewport-fit=cover, width=device-width'>
+
+<script src="mobileCheck.js"></script>
+
+</head>
+
+<body style="position: relative;">
+
+	<div class="nav_container">
+		<div class='nav_bg'></div>
+		
+        <a href="." class="logo" style="display: block;">
+            <img id="logo" src="./assets/logo.svg" style="vertical-align: bottom;">
+        </a>
+
+        <div id='nav' class="nav no-select hidden">
+        	<div class="mobile_nav_container">
+	            <ul class="mobile_nav_main_ul cascade">
+	                <li><a href="." class="inactive">Home<img src="./assets/house-fill.svg"></a></li>
+	                <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer" class="inactive">Live Radio<img src="./assets/broadcast.svg"></a></li>
+	                <li><a href=".#About-Us" class="inactive">About<img src="./assets/file-person.svg"></a></li>
+	                <li><a href="releases" class="inactive">Catalog<img src="./assets/vinyl-fill.svg"></a></li>
+	                <li><a href="join" class="inactive">Join<img src="./assets/person-plus-fill.svg"></a></li>
+	            </ul>
+	            <ul class="mobile_nav_footer_ul cascade" style="display: none;">
+	                <li><a href="https://www.youtube.com/c/sixtysevenradio" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+	                <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+	                <li><a href="https://instagram.com/sixtysevenradio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+	                <li><a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" target="_blank" rel="noopener noreferrer">Spotify</a></li>
+	            </ul>
+	        </div>
+        </div>
+
+        <input id='mobile_nav' class="mobile_nav" style="display: none" type="image" src="./assets/hamburger.svg" onclick="Toggle_Mobile_Nav()" />
+    </div>
+
+
+
+
+	<div class="Main_Container">
+		<img class="artwork">
+		<a href="." class="Back_Home_Container">
+			<div class="Back_Home Para_1" style="padding: 7px 30px;">Return to Home</div>
+		</a>
+	</div>
+
+	<footer>
+	    <div class="site-footer">
+	        <div class="site-footer-socials">
+	            <a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer"><img src="./assets/twitch.svg"></a>
+	            <a href="https://www.youtube.com/c/sixtysevenradio" target="_blank" rel="noopener noreferrer"><img src="./assets/youtube.svg"></a>
+	            <a href="https://instagram.com/sixtysevenradio" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram.svg"></a>
+	            <a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" target="_blank" rel="noopener noreferrer"><img src="./assets/spotify.svg"></a>
+	        </div>
+
+	        <hr style="color: rgba(255,255,255,0.7);">
+
+	        <div style="display: flex; margin: 0 auto; align-items: center; align-content: center; align-self: center;">
+	            <a href="." style="margin: 0 auto;">
+	                <img src="./assets/logo-2.svg" class="site-footer-logo" style="width: 25%; align-self: start; width: 100pt">
+	            </a>
+	        </div>
+	    </div>
+	</footer>
+
+</body>
+
+<script src="mobile-menu-toggle.js"></script>
+<script src="viewport-unit-correction.js"></script>
+
+</html>

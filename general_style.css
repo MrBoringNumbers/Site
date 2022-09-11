@@ -1,0 +1,366 @@
+:root {
+    --ThemeBgColor: #020a11;
+    --AltBgColor: #dddee0;
+    --AltFgColor: #ebeced;
+    --AltTitleColor: #71767a;
+    --DarkTitleColor: #414141;
+    --ThemeBodyColor: #12023e;
+    --AltBodyColor: #001a4a;
+    --ThemeButtonColor: #0062e8;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing:border-box; 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* START SCROLLBAR */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #272c33 var(--ThemeBgColor);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--ThemeBgColor);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #272c33;
+}
+
+/* END SCROLLBAR */
+
+
+/* Fonts */
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Regular.woff2');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Italic.woff2');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('./fonts/Bebas-Neue.woff2');
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('./fonts/WorkSans-Variable.woff2') format('woff2-variations');
+    font-weight: 100 900;
+}
+
+/* End Fonts */
+
+
+/* Correct h tags */
+
+h1, h2, h3, h4, h5, h6 {
+    display: block;
+    font-size: unset;
+    margin-top: unset;
+    margin-bottom: unset;
+    margin-left: unset;
+    margin-right: unset;
+    font-weight: unset;
+}
+
+/* End tag correction */
+
+
+
+/* Animations */
+
+@keyframes reveal {
+  0%   {transfrom: translate3d(0,0,0); opacity: 0;}
+  100% {transfrom: translate3d(0,0,0); opacity: 1;}
+}
+
+@keyframes pulse {
+  0%   {opacity: 1;}
+  100% {opacity: 0.2;}
+}
+
+/* End Animations */
+
+
+
+html {
+    touch-action: manipulation;
+}
+
+hr {
+    border-radius: 10px;
+    color: #041c32;
+    background-color: #041c32;
+    max-width: 75vw;
+    width: 100%;
+}
+
+body {
+    background: var(--AltBodyColor);
+}
+
+footer {
+    background: var(--ThemeBgColor);
+    padding: 10px 0;
+    position: relative;
+    z-index: 2;
+}
+
+a {
+    text-decoration: none;
+}
+
+.no-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.no-drag {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.site-footer {
+    margin: 0 auto;
+    max-width: 1200px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 210px;
+}
+
+.site-footer-column {
+    display: inline-block;
+    margin: 0 0 0 40px;
+    vertical-align: top;
+}
+
+.site-footer ul {
+    list-style: none;
+}
+
+.site-footer ul a {
+    text-decoration: none;
+    opacity: 0.5;
+    color: white;
+}
+
+.site-footer-socials {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.site-footer-socials a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.site-footer-socials img {
+    filter: invert(1);
+    height: 20pt;
+    opacity: 0.4;
+}
+
+.site-footer-socials img:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.site-footer-logo {
+    opacity: 0.5;
+}
+
+.site-footer-logo:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.logo {
+    display: inline-block;
+    position: relative;
+    z-index: 3;
+    padding: 0 40px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/*.logo:hover {
+    height: 63px;
+}*/
+
+.nav_container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 30px 0;
+}
+
+.nav_bg {
+    display: none;
+}
+
+.mobile_nav_main_ul {
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    padding: 0 40px;
+}
+
+
+.mobile_nav_main_ul li {
+    display: inline-block;
+    border: 10px;
+}
+
+.mobile_nav_main_ul li a {
+    color: white;
+    text-align: center;
+    margin:  0 7px;
+    text-decoration: none;
+    font-size: 17px;
+    position: relative;
+    z-index: 1;
+    display: block;
+    border-radius: 5px;
+}
+
+.mobile_nav_main_ul li a img {
+    display: none;
+}
+
+.mobile_nav_footer_ul {
+    display: none;
+}
+
+.inactive {
+    padding: 3px 7px;
+}
+
+.inactive:hover {
+    /*color: var(--ThemeButtonColor);
+    /*text-shadow: 0 0 10px blue;
+    padding: 3px 10px;*/
+}
+
+.inactive::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    display: block;
+    background: #0055ff;
+    /*box-shadow: 0 0 10px 1px blue;*/
+    transition: 500ms;
+    margin-top: 1px;
+    float: right;
+}
+
+.inactive:hover::after {
+    width: 100%;
+    float: left;
+}
+
+.active {
+    background-color: blue;
+    box-shadow: 0 0 10px blue;
+    padding: 3px 10px;
+}
+
+.Title_1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20pt;
+}
+
+.Title_2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30pt;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    background: linear-gradient(45deg, blue, cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.Title_3 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 30pt;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 auto;
+}
+
+.Body_Text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: min(15pt, 6vw);
+    color: #787878;
+}
+
+.Para_1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20pt;
+}
+
+.Button_1 {
+    display: inline-block;
+    padding: 5px 70px;
+    background: none;
+    transition: 0.3s;
+}
+
+.Button_1:hover {
+    background: limegreen;
+    color: white !important;
+    /*transform: scale(1.1);*/
+    transform: translateY(5px);
+    box-shadow: 0 0 darkgreen !important;
+}
+
+.Button_2 {
+    display: inline-block;
+    border: 2px solid white;
+    padding: 5px 70px;
+    background: none;
+    transition: 0.3s;
+}
+
+.Button_2:hover {
+    background: limegreen;
+    color: white !important;
+    transform: scale(1.1);
+}

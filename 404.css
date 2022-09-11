@@ -1,0 +1,70 @@
+body {
+	background: var(--ThemeBodyColor);
+}
+
+.Main_Container {
+	text-align: center;
+	position: relative;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background: linear-gradient(110deg, #7b31f2, #090310);
+}
+
+.artwork {
+	display: block;
+	margin: 0 auto;
+	max-width: 80vw;
+	max-height: 60vh;
+	content: url("./assets/404.png");
+}
+
+.avif .artwork, .webp .artwork {
+	content: url("./assets/404.webp");
+}
+
+.Back_Home_Container {
+	text-decoration: none;
+	color: black;
+	margin: 60px auto 0 auto;
+}
+
+.Back_Home {
+	background: #8003fc;
+	border: none;
+	border-radius: 5px;
+	transition: 0.2s;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20pt;
+	box-shadow: 0 0 15px #7e00d5;
+	display: inline-block;
+	color: white;
+}
+
+.Back_Home:hover {
+	box-shadow: 0 0 25px #7e00d5;
+	cursor: pointer;
+}
+
+/* mobile style */
+
+:root {
+	--AltBodyColor: #12023e;
+} 
+
+.nav_bg {
+    background: #26005e !important;
+}
+
+.scrolled_nav {
+    max-height: 100%;
+}
+
+.scrolled_nav ~ .logo {
+    filter: invert(0) !important;
+}
+
+.scrolled_nav ~ .mobile_nav {
+    filter: invert(0) !important;
+}

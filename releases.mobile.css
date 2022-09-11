@@ -1,0 +1,102 @@
+.Release_Showcase {
+	height: max(350px, 40vh) !important;
+}
+
+.Release_Showcase_Album {
+	display: none;
+}
+
+#Latest_Releases_Title {
+	display: none;
+}
+
+.Release_Showcase_Text {
+	text-shadow: none;
+}
+
+#Release_Showcase_Album_Title {
+	display: block !important;
+	-webkit-line-clamp: unset !important;
+	-webkit-box-orient: unset !important;
+	font-size: 40pt !important;
+	width: auto !important;
+	white-space: nowrap;
+}
+
+#Release_Showcase_Album_Artist {
+	font-size: 17pt !important;
+}
+
+.Release_Showcase_Info_Container {
+	width: 100%;
+	min-width: 0;
+	max-width: 400px;
+	justify-content: left;
+	margin: 0 40px;
+}
+
+.Release_Showcase_Album_Background {
+	object-position: center 80%;
+	min-height: 130%;
+	filter: brightness(90%) blur(0.3vw);
+}
+
+.Release_Showcase_Album_Background_Container {
+}
+
+.Release_Showcase_Header_Shadow {
+	display: none;
+}
+
+.Release_Showcase_Listen_Now {
+	display: flex;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.8s ease;
+	flex-direction: column;
+	position: absolute;
+	bottom: 20px;
+	color: white;
+	text-align: center;
+	width: 100%;
+}
+
+.Release_Showcase_Listen_Now_Btn {
+	display: block !important;
+	background: #0e6fdc;
+	padding: 2.4px 23px;
+	border-radius: 10px;
+	font-size: 17pt;
+	margin: 7px auto;
+	text-decoration: none;
+	color: inherit;
+}
+
+.Release_Showcase_Listen_Now_Other {
+	display: block !important;
+	font-size: 10pt;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.Details_Info_Container img {
+	margin: 20px;
+}
+
+.Radio_Bar label, select {
+    margin: min(5px, 0.7vw);
+    padding: 4px 12px;
+}
+
+.Radio_Bar label:hover, .Radio_Bar select:hover {
+    background: dodgerblue !important;
+    border-color: dodgerblue;
+    color: white;
+    padding: 4px 12px;
+    margin: initial 14px;
+    box-shadow: none;
+}

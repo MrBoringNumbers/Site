@@ -1,0 +1,213 @@
+.mobile_nav {
+    width: 30px;
+    max-height: 24px;
+    z-index: 3;
+    display: inline-block !important;
+    margin: 0 20px;
+    margin-right: max(20px, env(safe-area-inset-right));
+    transition: filter 0.3s;
+    border-radius: 0;
+}
+
+.mobile_nav:hover {
+    cursor: pointer;
+}
+
+.mobile_nav_container {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 0;
+}
+
+.mobile_nav_footer_ul {
+    display: flex !important;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Work Sans';
+}
+
+.mobile_nav_footer_ul li {
+    padding: 0 10px;
+}
+
+.mobile_nav_footer_ul li:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mobile_nav_footer_ul a {
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.mobile_nav_footer_ul a:hover {
+    opacity: 0.5;
+}
+
+.logo {
+    padding: 0 20px;
+    padding-left: max(20px, env(safe-area-inset-left));
+    transition: filter 0.3s;
+}
+
+.logo img {
+    height: 40px;
+    content: url("./assets/mobile-logo.svg");
+}
+
+.nav_container {
+    padding: 16px 0;
+    position: fixed;
+    z-index: 3;
+}
+
+.nav_bg {
+    background: white;
+    height: 100%;
+    width: 100%;
+    max-height: 0;
+    position: absolute;
+    top: 0;
+    transition: max-height 0.3s;
+    box-shadow: 0 -30px 20px 20px black;
+    display: block;
+}
+
+.scrolled_nav {
+    max-height: 100%;
+}
+
+.scrolled_nav ~ .logo {
+    filter: invert(0.6);
+}
+
+.scrolled_nav ~ .mobile_nav {
+    filter: invert(0.6);
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hidden li {
+    opacity: 0;
+}
+
+.nav {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg, #6b20db, var(--AltBodyColor));
+    z-index: 2;
+    clip-path: circle(max(140vw, 140vh) at 100% 0);
+    clip-path: circle(calc(var(--window_size) + 5%) at 100% 0);
+    transition: clip-path 0.7s, opacity 0.3s, visibility 0.3s;
+}
+
+@supports (clip-path: circle(0 at 100% 0)) {
+    .hidden {
+        opacity: 1;
+        clip-path: circle(0 at 100% 0) !important;
+    }
+    .nav {transition: clip-path 0.7s, visibility 0.7s;}
+}
+
+.mobile_nav_main_ul {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    padding: unset;
+    max-height: 100%;
+    margin: 72px 0;
+}
+
+.mobile_nav_main_ul li {
+    font-family: 'Work Sans';
+    display: block;
+    margin: 20px;
+}
+
+.mobile_nav_main_ul li a {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 32px;
+    text-align: left;
+    /*min-width: 240px;*/
+    text-decoration: none;
+    font-size: min(38pt, 10vw);
+    border-radius: 10px;
+    margin: 0;
+    transition: background 300ms, box-shadow 300ms;
+}
+
+.mobile_nav_main_ul li a img {
+    display: block;
+    min-width: 0;
+    width: 100%;
+    max-width: min(35px, 9vw);
+    max-width: auto 0;
+    opacity: 0.5;
+}
+
+.inactive {
+    padding: initial;
+    font-weight: 300;
+    overflow: hidden;
+}
+
+.inactive:hover {
+    padding: 6px 32px;
+    color: white;
+    text-shadow: unset;
+    background: var(--ThemeButtonColor);
+    box-shadow: 0 6px 6px rgba(7, 41, 72, 0.5);
+}
+
+.inactive::after {
+    content: unset;
+    height: unset;
+    width: 100%;
+    display: unset;
+    background: unset;
+    transition: transfrom 300ms;
+    margin-top: unset;
+    float: unset;
+}
+
+.inactive:hover::after {
+    width: 0;
+    float: unset;
+}
+
+.active {
+    box-shadow: 0 6px 6px rgba(7, 41, 72, 0.5);
+    font-weight: 700;
+    background: #0062e8;
+}
+
+.active img {
+    opacity: 0.35 !important;
+}
+
+.cascade li {transition: opacity 1s;}
+.cascade li:nth-child(1) {transition-delay: 250ms;}
+.cascade li:nth-child(2) {transition-delay: 350ms;}
+.cascade li:nth-child(3) {transition-delay: 450ms;}
+.cascade li:nth-child(4) {transition-delay: 550ms;}
+.cascade li:nth-child(5) {transition-delay: 650ms;}
+
+@media (max-height: 700px), (max-width: 400px) {
+    .mobile_nav_footer_ul {
+        display: none !important;
+    }
+    .mobile_nav_main_ul {
+        margin: 0 !important;
+    }
+}

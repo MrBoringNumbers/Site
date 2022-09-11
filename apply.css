@@ -1,0 +1,188 @@
+body {
+	background-color: #fb6d2e;
+	background-image: url('./assets/6-full.jpg'), url('./assets/6-low.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	width: 100%;
+}
+
+.avif body {
+	background-image: url('./assets/6-full.avif'), url('./assets/6-low.jpg');
+}
+
+.webp body {
+	background-image: url('./assets/6-full.webp'), url('./assets/6-low.jpg');
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: none;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: none;
+}
+::placeholder { /* Recent browsers */
+    text-transform: none;
+}
+
+.Form_Container {
+	max-width: 1000px;
+	padding: 30px 50px;
+	border-radius: 10px;
+	background: rgba(26, 25, 25, 0.9);
+	margin: 20px auto 100px auto;
+	color: white;
+}
+
+.Form_Type {
+	outline: none;
+	border: 1px solid white;
+	border-radius: 0 10px 10px 0;
+	background: none;
+	color: white;
+	padding: 0 20px;
+	font-size: 12pt;
+	height: 45px;
+	width: 100%;
+	line-height: 40px;
+	text-overflow: ellipsis;
+}
+
+.Form_Row {
+	margin: 40px 0;
+	display: flex;
+}
+
+.Form_Prompt {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.Form_Input_Label {
+	display: inline-block;
+	white-space: nowrap;
+	padding: 0 20px;
+	text-align: center;
+	border-radius: 10px 0 0 10px;
+	font-size: 16px;
+	vertical-align: middle;
+	line-height: 45px;
+	background: white;
+	color: black;
+}
+
+.Form_Radio_Label {
+	font-size: 13pt;
+}
+
+.Form_Radio_Bar {
+	display: flex;
+}
+
+.Form_Radio_Bar_Container {
+	display: block;
+	margin: 70px 0;
+}
+
+.Form_Radio_Bar input {
+	display: none;
+}
+
+.Form_Radio_Bar label {
+	font-size: 13pt;
+	width: 100%;
+	text-align: center;
+	background: none;
+	color: white;
+	border: 1px solid white;
+	line-height: 20pt;
+	padding: 7px 0;
+	cursor: pointer;
+	margin: 0 5px;
+	transition: 0.2s;
+}
+
+.Form_Radio_Bar label:hover {
+	background: white;
+	color: black;
+	transform: scale(1.1);
+}
+
+.Form_Radio_Bar label:first-of-type {
+	border-radius: 15px 0 0 15px;
+}
+
+.Form_Radio_Bar label:last-of-type {
+	border-radius: 0 15px 15px 0;
+}
+
+.Form_Radio_Bar input:checked + label {
+  background-color: white;
+  color: black;
+}
+
+.Form_Submit_Enabled {
+  border-radius: 10px;
+  color: white;
+  padding: 5px 60px;
+  border: none;
+  cursor: pointer;
+  background: #158be6;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.Form_Submit_Enabled:hover {
+  background: #035afc;
+  transform: scale(1.05);
+}
+
+.Form_Submit_Disabled {
+	border-radius: 10px;
+  color: white;
+  padding: 5px 60px;
+  border: none;
+  background: limegreen;
+  font-size: 20px;
+}
+
+.Back_Home {
+	border-radius: 10px;
+  color: white;
+  padding: 5px 50px;
+  border: none;
+  cursor: pointer;
+  background: limegreen;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.Back_Home:hover {
+	background: #02b313;
+  transform: scale(1.05);
+}
+
+.Required {
+	color: crimson;
+	font-size: 16px;
+}
+
+.Disclaimer {
+	background: rgba(252, 215, 3, 0.3);
+	padding: 10px 40px;
+	border-radius: 20px;
+	color: rgba(252, 215, 3, 1);
+	margin-top: 30px;
+	transition: 0.3s;
+	display: flex;
+	align-items: center;
+	position: relative;
+	font-size: 15pt;
+}

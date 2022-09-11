@@ -1,0 +1,400 @@
+@keyframes crossfade {
+  0%   {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes ticker-container {
+  0%, 10%   {transform: translate3d(0,0,0);}
+  90%, 100% {transform: translate3d(100%,0,0);}
+}
+
+@keyframes ticker-child {
+  0%, 10%   {transform: translate3d(0,0,0);}
+  90%, 100% {transform: translate3d(-100%,0,0);}
+}
+
+.Main_Title {
+    color: white;
+    font-size: 40pt;
+    text-align: center;
+}
+
+.Release_Showcase {
+    height: 100vh;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 0px 50px 0 black;
+}
+
+.Release_Showcase_Album {
+    height: 300px;
+    width: 300px;
+    max-height: 30vh;
+    max-width: 30vh;
+    box-shadow: 7px 12px 30px -3px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    position: relative;
+    margin: 0 30px;
+    overflow: hidden;
+}
+
+.Release_Showcase_Album:hover {
+    transform: translateY(-10px);
+    box-shadow: 25px 30px 50px -3px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.Release_Showcase_Album img {
+    height: 100%;
+    position: absolute;
+}
+
+
+.Release_Showcase_Album_Background {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: brightness(90%) blur(0.3vw);
+    transform: scale(1.03);
+}
+
+
+
+.Release_Showcase_Info_Container {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    position: relative;
+    min-width: min(100%, 1000px);
+    margin: 0 10px;
+    flex-wrap: wrap;
+}
+
+.Release_Showcase_Text {
+    color: white;
+    text-shadow: 5px 7px 10px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+}
+
+.All_Releases_Container {
+    background: #f7f7f7;
+    box-shadow: 0 90px 70px 100px black;
+    padding: 50px 0;
+    text-align: center;
+    position: relative; z-index: 1;
+    min-height: 60vh;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(300px, 40vw));
+    grid-gap: 25px;
+    padding: 25px 25px;
+    text-align: left;
+    justify-content: space-evenly;
+    justify-items: safe left;
+    align-content: space-evenly;
+    align-items: center;
+}
+
+.grid img {
+    width: 100%;
+    box-shadow: 10px 10px 50px 0px rgba(80, 104, 117, 0.3);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.grid img:hover {
+    outline: 1px solid dodgerblue;
+    box-shadow: 10px 10px 50px 5px rgba(30, 144, 255, 0.2);
+}
+
+.Grid_Album_Container {
+    white-space: nowrap;
+    max-width: 100%;
+    position: relative;
+    text-align: left;
+}
+
+
+.Ticker {
+    overflow: hidden;
+    display: block;
+}
+
+.Ticker div {
+    width: 100%;
+    transform: translate3d(0,0,0)
+}
+
+.Ticker div div {
+    display: inline-block;
+    min-width: 100%;
+    width: auto;
+    position: relative;
+    transform: translate3d(0,0,0)
+}
+
+.Ticker:hover div {
+    animation: ticker-container alternate infinite linear;
+    animation-duration: inherit;
+    animation-delay: 0.5s;
+}
+
+.Ticker:hover div div {
+    animation: ticker-child alternate infinite linear;
+    animation-duration: inherit;
+    animation-delay: inherit;
+}
+
+.Grid_Overflow_Cover {
+    position: absolute;
+    box-shadow: inset -50px -50px 10px 20px #ebeced;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.Grid_Album_Name {
+    color: #71767a;
+}
+
+.Grid_Artist_Name {
+    color: #71767a;
+    opacity: 0.4;
+    font-size: 15pt;
+    text-align: left;
+    transition: opacity 0.3s;
+}
+
+.Grid_Artist_Name:hover {
+    opacity: 1;
+}
+
+.Radio_Bar {
+    margin: 30px auto 50px auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.Radio_Bar input {
+    display: none;
+}
+
+.Radio_Bar select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.Radio_Bar label, select {
+    font-size: 0.6em;
+    text-align: center;
+    background: none;
+    color: #71767a;
+    border: 1px solid #71767a;
+    line-height: 1.7em;
+    padding: 5px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 5px;
+    transition: 0.2s;
+}
+
+.Radio_Bar label:hover, .Radio_Bar select:hover {
+    background: dodgerblue !important;
+    border-color: dodgerblue;
+    color: white;
+    padding: 5px 20px;
+    margin: initial 14px;
+    box-shadow: 0 4px 10px 1px rgba(59, 72, 79, 0.3);
+}
+
+.Radio_Bar input:checked + label {
+    background: #71767a;
+    color: white;
+}
+
+
+.Details_Background {
+    background: rgba(0, 0, 0, 0.36);
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.Details_Container {
+    background: white;
+    position: relative;
+    height: 630px;
+    width: 970px;
+    min-width: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 30px;
+    max-height: 100vh;
+}
+
+.Details_Exit_Btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 4%;
+    z-index: 1;
+}
+
+.Details_Exit_Btn img {
+    width: 33px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.Details_Exit_Btn img:hover {
+    opacity: 0.6;
+}
+
+.Details_Info_Container {
+    display: flex;
+    align-items: flex-start;
+    color: var(--DarkTitleColor);
+    font-size: 26pt;
+    min-width: 0;
+    width: 100%;
+    padding: 0 60px;
+}
+
+.Details_Data {
+    margin-left: 35px;
+    margin-top: 10px;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.Details_Data div:not(:last-child) {
+    margin-bottom: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.Details_Album {
+    font-size: 2.1em;
+    line-height: 0.82em;
+    letter-spacing: normal;
+    vertical-align: bottom;
+}
+
+.Details_Other {
+    opacity: 0.4;
+}
+
+.Details_Info_Container img {
+    object-fit: contain;
+    box-shadow: 10px 20px 35px rgba(0, 0, 0, 0.5);
+    min-height: 0;
+    max-height: 267px;
+}
+
+.Details_Platforms {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 60px;
+    width: 100%;
+}
+
+.Details_Platforms svg {
+    width: 43px;
+    height: 43px;
+    fill: var(--DarkTitleColor);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.Details_Platforms svg:hover {
+    fill: grey;
+}
+
+.Details_Platforms a {
+    margin: 0 15px;
+    font-size: 0;
+    display: none;
+}
+
+
+@media (max-height: 600px) {
+    #Release_Showcase_Album_Title {
+        font-size: 10vh !important;
+    }
+    #Release_Showcase_Album_Artist {
+        font-size: 5vh !important;
+    }
+}
+
+@media (max-height: 550px) {
+    #Latest_Releases_Title {
+        opacity: 0 !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .Details_Container {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .Details_Info_Container {
+        overflow: hidden;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        font-size: 20pt;
+    }
+
+    .Details_Platforms {
+        position: relative;
+        padding-bottom: 0;
+        margin-top: 22px;
+    }
+
+    .Details_Platforms a {
+        margin: 12px;
+    }
+
+    .Details_Platforms svg {
+        height: 35px;
+        width: 35px;
+    }
+
+    .Details_Album {
+        font-size: 1.3em;
+    }
+
+    .Details_Data {
+        margin-left: 0;
+    }
+}

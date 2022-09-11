@@ -1,0 +1,19 @@
+{
+    "name": "SixtySevenRadio",
+    "short_name": "SixtySevenRadio",
+    "icons": [
+        {
+            "src": "./assets/android-chrome-193x193.png",
+            "sizes": "193x193",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/android-chrome-385x385.png",
+            "sizes": "385x385",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#12023e",
+    "background_color": "#12023e",
+    "display": "standalone"
+}

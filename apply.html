@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="image-support-check.js"></script>
+
+<title>Apply | SixtySevenRadio&#x2122</title>
+<link rel="icon" type="image/x-icon" href="assets/fav.ico">
+<link rel="apple-touch-icon" href="./assets/iphone-icon.png"/>
+<link rel="stylesheet" href="general_style.css">
+<link rel="stylesheet" media="screen and (max-width: 800px)" href="general_style.mobile.css">
+<link rel="stylesheet" href="apply.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#001a4a">
+
+</head>
+
+<body>
+
+	<a href=".">
+		<img src="./assets/logo-2.svg" style="height: 60px; position: absolute; top: 30px; left: 50%; transform: translateX(-50%); display: inline-block;">
+	</a>
+
+	<div class="Title_1" style="color: white; font-size: 30pt; text-align: center; padding-top: 110px;">
+		<div>Application</div>
+	</div>
+
+	<div class="Form_Container Para_1">
+
+		<div id="Success Container" style="display: none; text-align: center; ">
+			<div class="Title_1" style="color: limegreen; font-size: 25pt; margin-bottom: 10px">Your Application Was Sent!</div>
+			<div style="margin-top: 20px; font-size: 17pt; line-height: 1.5em;">Your application is in review. You should receive an email at the address you provided within the next few minutes.</div>
+			<div style="text-align: center; margin-top: 30px;">
+				<a href=".">
+					<button class="Back_Home Title_1" style="padding: 5px 50px;">Return to Home</button>
+				</a>
+			</div>
+		</div>
+
+		<div id="Form">
+
+			<div class="Disclaimer Title_1">
+				<div style="font-size: 30pt; margin: auto 30px auto 0;">&#x26A0</div>
+				<span style="">DISCLAIMER: SixtySevenRadio is currently only accepting guitar instrumentals. We do not accept covers or any material that is not explicitly your own.</span>
+			</div>
+
+			<form method="post" id="sheetdb-form" action="https://script.google.com/macros/s/AKfycbzlFF8DnH0T8QiPjvvvp2uswVk70Z0Ca37GP60jyjpEfndLs-Zg/exec">
+
+			<div class="Form_Row">
+				<div class="Form_Input_Label">Invite Code</div>
+				<input class="Form_Type Para_1" style="text-transform: Uppercase;" type="text" name="Invite Code" placeholder="If you received an invite code, enter it here.">
+			</div>
+
+			<div class="Form_Row">
+				<div class="Form_Input_Label">Artist Name <span class="Required">*</span></div>
+				<input class="Form_Type Para_1" type="text" name="Artist Name" placeholder="This is the name you use when releasing your music." required>
+			</div>
+
+			<div class="Form_Radio_Bar_Container">
+				<div class="Form_Prompt">How Many Albums/EPs Do You Make In A Year? <span class="Required">*</span></div>
+				<div class="Form_Radio_Bar">
+					<input type="radio" id="r1-1" name="Albums&EPs/Year" value="1 to 2"/ required> <label for="r1-1">1 to 2</label>
+					<input type="radio" id="r1-2" name="Albums&EPs/Year" value="2 to 5"/> <label for="r1-2">2 to 5</label>
+					<input type="radio" id="r1-3" name="Albums&EPs/Year" value="5 to 10"/> <label for="r1-3">5 to 10</label>
+					<input type="radio" id="r1-4" name="Albums&EPs/Year" value="More than 10"/> <label for="r1-4">More than 10</label>
+				</div>
+			</div>
+
+			<div class="Form_Radio_Bar_Container">
+				<div class="Form_Prompt">Which Offers Are You Interested In? <span class="Required">*</span></div>
+				<div class="Form_Radio_Bar">
+					<input type="radio" id="r2-1" name="Offer Interests" value="Radio"/ required> <label for="r2-1">I am only interested in joining the Radio</label>
+					<input type="radio" id="r2-2" name="Offer Interests" value="Radio & Label"/> <label for="r2-2">I am interested in joining the Radio and the Label</label>
+					<input type="radio" id="r2-3" name="Offer Interests" value="Label"/> <label for="r2-3">I am only interested in joining the Label</label>
+				</div>
+			</div>
+			
+			<div class="Form_Radio_Bar_Container">
+				<div class="Form_Prompt">Are You Distributed? <span class="Required">*</span></div>
+				<div class="Form_Radio_Bar">
+					<input type="radio" id="r3-1" name="Distributed" value="Yes"/ required> <label for="r3-1">Yes</label>
+					<input type="radio" id="r3-2" name="Distributed" value="No"/> <label for="r3-2">No</label>
+					<input type="radio" id="r3-3" name="Distributed" value="Unsure"/> <label for="r3-3">I'm not sure</label>
+				</div>
+			</div>
+
+			<div class="Form_Row">
+				<div class="Form_Input_Label">Link Your Work <span class="Required">*</span></div>
+				<input class="Form_Type Para_1" type="text" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Links must be from YouTube, SoundCloud, or Bandcamp')" name="Link to Work" pattern=".*youtube\.com.*|.*youtu\.be.*|.*soundcloud\.com.*|.*bandcamp\.com.*" placeholder="Links must be from SoundCloud, YouTube, or Bandcamp." required>
+			</div>
+
+
+			<div class="Form_Row" style="margin: 70px 0 20px 0;">
+				<div style="margin: 0 auto;">What Would You Like To Tell Us?</div>
+			</div>
+
+			<div>
+				<textarea rows="4" cols="50" class="Form_Type Para_1" name="Message" placeholder="Limited to 1000 characters." maxlength="1000" style="border-radius: 10px; width: 100%; min-width: 100%; max-width: 100%; height: 300px; line-height: 25px; padding: 15px 20px;"></textarea>
+			</div>
+
+			<div class="Form_Row">
+				<div class="Form_Input_Label">Email <span style="color: crimson">*</span></div>
+				<input class="Form_Type Para_1" type="email" name="Email" placeholder="This is the email we will use to contact you." required>
+			</div>
+
+			<div class="Form_Row">
+				<div class="Form_Input_Label">Instagram</div>
+				<input class="Form_Type Para_1" type="text" name="Instagram" placeholder="A backup method in case we can't reach you by email.">
+			</div>
+
+			<div style="text-align: center; margin: 50px 0px 20px 0px;">
+				<button type="submit" id="Form_Submit" class="Form_Submit_Enabled Title_1">Submit</button>
+			</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</body>
+
+<script>
+
+// SheetDB Success Confirmation
+var form = document.getElementById('sheetdb-form');
+var submitBtn = document.getElementById("Form_Submit")
+var fromElement = document.getElementById("Form")
+var successElement = document.getElementById("Success Container")
+
+function SuccessMessage() {
+	fromElement.style.display = 'none';
+	successElement.style.display = '';
+}
+
+form.addEventListener("submit", e => {
+	submitBtn.innerHTML = 'Submitting...';
+  e.preventDefault();
+  fetch(form.action, {
+      method : "POST",
+      body: new FormData(document.getElementById("sheetdb-form")),
+  }).then(
+      response => response.json()
+  ).then((html) => {
+  	submitBtn.disabled = true;
+		submitBtn.innerHTML = 'Submitted &#x2713';
+		submitBtn.classList.remove('Form_Submit_Enabled');
+		submitBtn.classList.add('Form_Submit_Disabled');
+		SuccessMessage();
+  });
+});
+</script>
+
+</html>

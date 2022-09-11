@@ -1,0 +1,323 @@
+/* Animations */
+
+@keyframes shrink {
+  0%   {letter-spacing: 0.1em;}
+  100% {letter-spacing: 0;}
+}
+
+@keyframes light {
+  0%   {background-position: 100% center;}
+  100% {background-position: 0 center}
+}
+
+/* End Animations */
+
+
+/* Placeholder Text */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #6d4f9b;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #6d4f9b;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #6d4f9b;
+}
+
+/* End Placeholder */
+
+body {
+    background: var(--ThemeBodyColor);
+}
+
+.nav_container {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.globe_container {
+    background: var(--ThemeBgColor);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.globe {
+    position: relative;
+    min-height: 100vh;
+    max-height: min(150vh,120vw);
+    opacity: 0;
+}
+
+.globe_load_btn {
+    position: absolute;
+    bottom: 150px;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    margin: 0 7px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    box-shadow: 0 0 10px blue;
+    padding: 3px 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.loading_indicator {
+    position: absolute;
+    bottom: 50px;
+    color: #1b6497;
+    font-size: 14pt;
+    letter-spacing: 1pt;
+}
+
+.Release_Showcase {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0px 50px 0 black;
+}
+
+.Release_Showcase_Album {
+    height: 300px;
+    box-shadow: 7px 12px 30px -3px black;
+    transition: 0.3s;
+}
+
+.Release_Showcase_Album:hover {
+    transform: translateY(-10px);
+    box-shadow: 25px 30px 50px -3px black;
+    cursor: pointer;
+}
+
+.About_Container {
+    position: relative;
+    max-width: 100%;
+    color: var(--DarkTitleColor);
+    min-height: 100vh;
+    /*background: linear-gradient(120deg, #7b31f2, #090310);
+    background: linear-gradient(120deg, #7b31f2, #090310, rgba(0,0,0,0), rgba(0,0,0,0));*/
+    background-size: 300% 100%;
+    background-position: 0 100%;
+    background-attachment: fixed;
+    animation: light 1s forwards paused;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Fade_In_Bg {
+    background: linear-gradient(110deg, #7b31f2, #090310, rgba(0,0,0,0));
+    transform: translateX(-100%);
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    width: 200vw;
+    height: 100vh;
+    opacity: 0;
+    /*animation: light 1500ms forwards paused;*/
+    transition: opacity 1s, transform 1s;
+}
+
+.About_Subcontainer {
+    text-align: left;
+    height: min(100vh, 1000px);
+    max-width: 1500px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.About_Body {
+    color: white;
+    font-size: min(17pt,max(3vh,10pt));
+    max-width: 50%;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
+.About_Subcontainer img {
+    display: block;
+    margin: 60px auto 0 auto;
+}
+
+.Main_Title {
+    transform: translate3d(0,0,0);
+    font-size: 60pt;
+    transform: translateY(4px);
+    background-image: linear-gradient(45deg, white, lightblue);
+}
+
+.mobile_img {
+    display: none;
+}
+
+.headphone_img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 70%;
+    z-index: 0;
+    max-width: 45%;
+    opacity: 0;
+    transition: opacity 1000ms 500ms;
+}
+
+.About_Title {
+    font-weight: 300;
+    color: white;
+    font-size: min(50pt,max(10vh,30pt));
+    text-align: left;
+    margin-bottom: 30px;
+    animation: shrink 1s forwards paused ease-out, reveal 1s forwards paused ease-out;
+}
+
+.Contact_Title {
+    color: white;
+    font-size: 27pt;
+    display: block;
+    text-decoration: none;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.About_Background {
+    height: 100vh;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+}
+
+form {
+    width: 100%;
+    margin: 0 auto;
+}
+
+form textarea {
+    height: 100%;
+}
+
+.Form_Type {
+    padding: 10px 15px;
+    border: 1px solid #6d4f9b;
+    align-items: center;
+    margin-bottom: min(20px, 0.8em);
+    color: white;
+    background: none;
+    outline: none;
+    font-size: 17pt;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.Form_Submit {
+    background: none;
+    color: #6d4f9b;
+    border-radius: 0;
+    padding: 5px 30px;
+    border: 1px solid #6d4f9b;
+    transition: 0.3s;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 2px;
+    font-size: 0.8em;
+}
+
+.Form_Submit:hover:enabled {
+    background: dodgerblue;
+    border-color: dodgerblue;
+    color: white;
+    padding: 5px 40px;
+}
+
+.Form_Submit:disabled {
+    opacity: 0.32;
+    cursor: default;
+}
+
+.Contact_Form_Details_Container {
+    padding: 50px 40px;
+    max-width: 580px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(120deg, #491d90, #18092e);
+    filter: saturate(0);
+    transition: filter 1s 200ms;
+}
+
+.Contact_Form_Container {
+    display: flex;
+    position: absolute;
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    background: none;
+    box-shadow: 30px 30px 60px 0px rgba(0, 0, 0, 0.7);
+    height: 80vh;
+    max-height: 607px;
+    min-height: 500px;
+    max-width: 100%;
+    /*font-size: min(17pt, 4vw);*/
+}
+
+.Contact_Container {
+    min-height: max(100vh, 800px);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.contact_img {
+    max-width: 500px;
+    width: 500px;
+    background-image: url('./assets/12-full.jpg'), url('./assets/12-low.jpg');
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    content: center;
+    transition: max-width 0.3s
+}
+
+.avif .contact_img {
+    background-image: url('./assets/12-full.avif'), url('./assets/12-low.jpg');
+}
+
+.webp .contact_img {
+    background-image: url('./assets/12-full.webp'), url('./assets/12-low.jpg');
+}
+
+.globe_indicator {
+    width: 20vh;
+    max-width: 200px;
+    position: absolute;
+    left: 53%;
+    top: 63%;
+    opacity: 0;
+    /*transition: opacity 200ms 300ms;*/
+    transition: opacity 1s 500ms;
+}
+
+@media (max-width: 1000px) {
+    #Contact_Img {max-width: 0 !important;}
+}
