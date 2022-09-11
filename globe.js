@@ -247,5 +247,5 @@ globe.addEventListener('touchend', EndMove, {passive: true});
 globe.addEventListener('touchcancel', EndMove, {passive: true});
 
 window.addEventListener('load', function() {
-    console.log("PERF:", window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"])
-}
+    console.log("PERF:", window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"], "ms")
+})
