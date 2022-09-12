@@ -22,6 +22,14 @@ const progress = document.getElementById("progress");
 const xpos = 800 - (260/2)
 const ypos = 540 - (260/2)
 
+
+
+const globe = document.getElementById('globe_container')
+const globe_indicator = document.getElementById('globe_indicator')
+globe.addEventListener('mousedown', function() {globe_indicator.style.transitionDuration = '300ms'; globe_indicator.style.transitionDelay = '300ms'; globe_indicator.style.opacity = 0;}, {passive: true})
+globe.addEventListener('touchstart', function() {globe_indicator.style.transitionDuration = '300ms'; globe_indicator.style.transitionDelay = '300ms'; globe_indicator.style.opacity = 0;}, {passive: true})
+
+
 function incrementLoadedFrames() {
     loadedFrames += 1;
     if (loadedFrames == frameCount) {
@@ -29,6 +37,7 @@ function incrementLoadedFrames() {
     } else {
         loadElement.style.display = ''
         progress.innerHTML = Math.floor( (loadedFrames/frameCount)*100 );
+        globe_indicator.style.opacity = 1;
     }
 }
 
@@ -84,11 +93,6 @@ function start_stop_globe(event) {
     if (event[0].isIntersecting) {spinInterval = setInterval(requestAnimationFrame,1000/frameRate,Step);}
 }
 
-const globe = document.getElementById('globe_container')
-const globe_indicator = document.getElementById('globe_indicator')
-globe.addEventListener('mousedown', function() {globe_indicator.style.transitionDuration = '300ms'; globe_indicator.style.transitionDelay = '300ms'; globe_indicator.style.opacity = 0;}, {passive: true})
-globe.addEventListener('touchstart', function() {globe_indicator.style.transitionDuration = '300ms'; globe_indicator.style.transitionDelay = '300ms'; globe_indicator.style.opacity = 0;}, {passive: true})
-
 const donut_img = new Image();
 donut_img.src = './assets/donuthole.webp';
 donut_img.onload = function(){
@@ -110,9 +114,6 @@ donut_img.onload = function(){
             const loadSpeed = window.performance.timing["domContentLoadedEventEnd"] - window.performance.timing["connectStart"]
             console.log("PERF:", loadSpeed, "ms")
             if (loadSpeed > 1500) {return}
-
-            // Show Indicator
-            globe_indicator.style.opacity = 1;
             
             // Set Interval
             spinInterval = setInterval(requestAnimationFrame,1000/frameRate,Step);

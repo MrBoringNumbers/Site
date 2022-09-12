@@ -247,7 +247,8 @@ form textarea {
     padding: 5px 40px;
 }
 
-.Form_Submit:disabled {
+.Form_Submit:disabled, .Form_Type:disabled {
+    color: #9474c6;
     opacity: 0.32;
     cursor: default;
 }

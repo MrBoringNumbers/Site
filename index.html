@@ -71,7 +71,7 @@
                 <ul class="mobile_nav_main_ul cascade">
                     <li><a href="." class="active">Home<img src="./assets/house-fill.svg"></a></li>
                     <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer" class="inactive">Live Radio<img src="./assets/broadcast.svg"></a></li>
-                    <li><a href="#About-Us" class="inactive" onclick="if (window.innerWidth < 800) {Close_Mobile_Nav()}">About<img src="./assets/file-person.svg"></a></li>
+                    <li><a href="#about-us" class="inactive" onclick="if (window.innerWidth < 800) {Close_Mobile_Nav()}">About<img src="./assets/file-person.svg"></a></li>
                     <li><a href="releases" class="inactive">Catalog<img src="./assets/vinyl-fill.svg"></a></li>
                     <li><a href="join" class="inactive">Join<img src="./assets/person-plus-fill.svg"></a></li>
                 </ul>
@@ -102,12 +102,12 @@
     <div class="mobile_container min_scroll" style="display: none">
         <div class="hero_darken"></div>
         <img class="hero_logo" src="./assets/logo.svg">
-        <a class="read-more-btn" href="#About-Us">READ MORE</a>
+        <a class="read-more-btn" href="#about-us">READ MORE</a>
     </div>
 
     <div id="Fade_In_Bg" class="Fade_In_Bg"></div>
             
-    <div id="About-Us" class="About_Container">
+    <div id="about-us" class="About_Container">
         <div class="Title_1" style="text-align: center;">
             <img class="animate_observer mobile_img" src="./assets/lab-sit.svg">
 
@@ -132,9 +132,9 @@
                         <h1 class="Para_1 Contact_Title animate_observer">Contact</h1>
 
                         <form method="post" id="contact-form" style="overflow: hidden; display: flex; flex-direction: column; height: 100%;" action="https://script.google.com/macros/s/AKfycbzmFZ4mySz6iklMHZXSzIa47aziHMrb2H8OsCIEIf0jdRSrftQ/exec">
-                            <input class="Form_Type Para_1" type="text" name="Name" placeholder="Name" required>
-                            <input class="Form_Type Para_1" type="text" name="Email" placeholder="Email" required>
-                            <textarea class="Form_Type Para_1" style="min-height: 0;" type="text" name="Message" placeholder="Message" required></textarea>
+                            <input id="Contact_Name" class="Form_Type Para_1" type="text" name="Name" placeholder="Name" required>
+                            <input id="Contact_Email" class="Form_Type Para_1" type="text" name="Email" placeholder="Email" required>
+                            <textarea id="Contact_Body" class="Form_Type Para_1" style="min-height: 0;" type="text" name="Message" placeholder="Message" required></textarea>
                             <button type="submit" id="Form_Submit" class="Form_Submit Para_1">Send</button>
                         </form>
                     </div>
@@ -178,7 +178,8 @@
     const FadeDiv = document.getElementById('Fade_In_Bg')
     const Headphones = document.getElementById('headphones_img')
     const Contact_Details = document.getElementById('Contact_Form_Details_Container')
-    const About_Cont = document.getElementById('About-Us')
+    const AboutUs = document.getElementById('about-us')
+    const Contact = document.getElementById('contact')
 
     function fadeIn (event) {
         if (event[0].isIntersecting) {
@@ -197,7 +198,7 @@
     }
 
     let fade_in_observer = new IntersectionObserver(fadeIn, {threshold:0.15});
-    fade_in_observer.observe(About_Cont)
+    fade_in_observer.observe(AboutUs)
 
     // Smooth Scroll Anchors
     function dynamic_smooth_scroll () {
@@ -207,22 +208,24 @@
     dynamic_smooth_scroll()
     window.addEventListener('resize', dynamic_smooth_scroll)
 
-    const AboutUs = document.getElementById('About-Us')
-    if (window.location.href.endsWith('#About-Us') && window.innerWidth < 800) {
+    if (window.location.href.endsWith('#about-us') && window.innerWidth < 800) {
         window.addEventListener('load', function() {
             window.scrollTo({top: window.pageYOffset + AboutUs.getBoundingClientRect().top - 20, behavior: 'smooth'});
         })
     }
-    const Contact = document.getElementById('Contact')
-    if (window.location.href.endsWith('#Contact') && window.innerWidth < 800) {
+
+    if (window.location.href.endsWith('#contact') && window.innerWidth < 800) {
         window.addEventListener('load', function() {
             window.scrollTo({top: window.pageYOffset + Contact.getBoundingClientRect().top - 30, behavior: 'smooth'});
         })
     }
 
     // Form Success Confirmation
-    var form = document.getElementById('contact-form');
-    var submitBtn = document.getElementById("Form_Submit")
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById("Form_Submit")
+    const contactName = document.getElementById("Contact_Name")
+    const contactEmail = document.getElementById("Contact_Email")
+    const contactBody = document.getElementById("Contact_Body")
 
     form.addEventListener("submit", e => {
         submitBtn.innerHTML = 'Sending...';
@@ -233,9 +236,12 @@
       }).then(
           response => response.json()
       ).then((html) => {
+        contactName.disabled = true;
+        contactEmail.disabled = true;
+        contactBody.disabled = true;
         submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sent';
-            SuccessMessage();
+        submitBtn.innerHTML = 'Sent';
+        SuccessMessage();
       });
     });
 
