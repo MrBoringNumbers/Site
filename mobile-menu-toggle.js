@@ -36,6 +36,7 @@ window.checkNavBgScroll = function() {
     }
 }
 window.addEventListener('scroll', checkNavBgScroll)
+window.addEventListener('resize', checkNavBgScroll)
 
 // Calc Window Size
 function CalcWindowSize() {

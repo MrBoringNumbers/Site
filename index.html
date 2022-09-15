@@ -59,32 +59,34 @@
 
 <body style="overflow-x: hidden; position: relative;">
 
-    <div class="nav_container">
-        <div class='nav_bg'></div>
+    <div class="nav_sticky_until_about">
+        <div class="nav_container">
+            <div class='nav_bg'></div>
 
-        <a href="." class="logo" style="display: block;">
-            <img id="logo" src="./assets/logo.svg" style="vertical-align: bottom;">
-        </a>
+            <a href="." class="logo" style="display: block;">
+                <img id="logo" src="./assets/logo.svg" style="vertical-align: bottom;">
+            </a>
 
-        <div id='nav' class="nav no-select hidden">
-            <div class="mobile_nav_container">
-                <ul class="mobile_nav_main_ul cascade">
-                    <li><a href="." class="active">Home<img src="./assets/house-fill.svg"></a></li>
-                    <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer" class="inactive">Live Radio<img src="./assets/broadcast.svg"></a></li>
-                    <li><a href="#about-us" class="inactive" onclick="if (window.innerWidth < 800) {Close_Mobile_Nav()}">About<img src="./assets/file-person.svg"></a></li>
-                    <li><a href="releases" class="inactive">Catalog<img src="./assets/vinyl-fill.svg"></a></li>
-                    <li><a href="join" class="inactive">Join<img src="./assets/person-plus-fill.svg"></a></li>
-                </ul>
-                <ul class="mobile_nav_footer_ul cascade" style="display: none;">
-                    <li><a href="https://www.youtube.com/c/sixtysevenradio" target="_blank" rel="noopener noreferrer">YouTube</a></li>
-                    <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
-                    <li><a href="https://instagram.com/sixtysevenradio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                    <li><a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" target="_blank" rel="noopener noreferrer">Spotify</a></li>
-                </ul>
+            <div id='nav' class="nav no-select hidden">
+                <div class="mobile_nav_container">
+                    <ul class="mobile_nav_main_ul cascade">
+                        <li><a href="." class="active">Home<img src="./assets/house-fill.svg"></a></li>
+                        <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer" class="inactive">Live Radio<img src="./assets/broadcast.svg"></a></li>
+                        <li><a href="#about-us" class="inactive" onclick="if (window.innerWidth < 800) {Close_Mobile_Nav()}">About<img src="./assets/file-person.svg"></a></li>
+                        <li><a href="releases" class="inactive">Catalog<img src="./assets/vinyl-fill.svg"></a></li>
+                        <li><a href="join" class="inactive">Join<img src="./assets/person-plus-fill.svg"></a></li>
+                    </ul>
+                    <ul class="mobile_nav_footer_ul cascade" style="display: none;">
+                        <li><a href="https://www.youtube.com/c/sixtysevenradio" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                        <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+                        <li><a href="https://instagram.com/sixtysevenradio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" target="_blank" rel="noopener noreferrer">Spotify</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <input id='mobile_nav' class="mobile_nav" style="display: none" type="image" src="./assets/hamburger.svg" onclick="Toggle_Mobile_Nav()" />
+            <input id='mobile_nav' class="mobile_nav" style="display: none" type="image" src="./assets/hamburger.svg" onclick="Toggle_Mobile_Nav()" />
+        </div>
     </div>
 
     
@@ -101,7 +103,7 @@
 
     <div class="mobile_container min_scroll" style="display: none">
         <div class="hero_darken"></div>
-        <img class="hero_logo" src="./assets/logo.svg">
+        <img class="hero_logo no-drag" draggable="false" src="./assets/logo.svg">
         <a class="read-more-btn" href="#about-us">READ MORE</a>
     </div>
 
@@ -109,21 +111,21 @@
             
     <div id="about-us" class="About_Container">
         <div class="Title_1" style="text-align: center;">
-            <img class="animate_observer mobile_img" src="./assets/lab-sit.svg">
+            <img class="animate_observer mobile_img no-drag" draggable="false" src="./assets/lab-sit.svg">
 
             <div class="About_Subcontainer">
                 <div style="margin-left: 100px;">
                     <h1 id="About_Title" class="Title_3 About_Title animate_observer">About <span style="font-weight: 700;">Us</span></h1>
                     <p class="Body_Text About_Body">Sixty&shy;Seven&shy;Radio is an inde&shy;pend&shy;ent record label and inter&shy;net radio sta&shy;tion blend&shy;ing new-&shy;age, easy listen&shy;ing, and instru&shy;men&shy;tal guitar music. We provide a new type of radio listen&shy;ing experi&shy;ence in response to the over&shy;sat&shy;urated lofi hip-&shy;hop scene. With artists and affili&shy;ates around the world, we empower each musician to stay true to their craft while we focus on show&shy;casing this under&shy;appre&shy;ciated genre. We hope to re&shy;vital&shy;ize this type of music as we embark on a journey with all our artists, and of course, our fans.</p>
                 </div>
-                <img id="headphones_img" class="animate_observer desktop_img headphone_img" src="./assets/headphones.svg">
+                <img id="headphones_img" class="animate_observer desktop_img headphone_img no-drag" draggable="false" src="./assets/headphones.svg">
             </div>
 
             <div class="Contact_Container" id="Contact">
 
                 <div class="Contact_Form_Container">
 
-                    <img class="animate_observer mobile_img" src="./assets/mail.svg">
+                    <img class="animate_observer mobile_img no-drag" draggable="false" src="./assets/mail.svg">
 
                     <div id="Contact_Img" class="desktop_img contact_img">
                     </div>
@@ -142,7 +144,7 @@
                 </div>
 
             </div>
-            <img class="animate_observer mobile_img" src="./assets/headphones-filled.svg">
+            <img class="animate_observer mobile_img no-drag" draggable="false" src="./assets/headphones-filled.svg">
         </div>
     </div>
 	
