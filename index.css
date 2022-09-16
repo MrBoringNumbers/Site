@@ -180,7 +180,7 @@ body {
     right: 0;
     max-height: 70%;
     z-index: 0;
-    max-width: 45%;
+    max-width: 41%;
     opacity: 0;
     transition: opacity 1000ms 500ms;
 }
@@ -324,6 +324,16 @@ form textarea {
     transition: opacity 1s;
 }
 
+.About_Text_Container {
+    margin-left: 100px;
+}
+
 @media (max-width: 1000px) {
     #Contact_Img {max-width: 0 !important;}
+}
+
+@media (max-width: 1000px) {
+    .headphone_img {display: none !important;}
+    .About_Body {max-width: 100%;}
+    .About_Text_Container {margin-right: 100px;}
 }

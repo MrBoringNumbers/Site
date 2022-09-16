@@ -35,7 +35,6 @@ input {
 .mobile_container {
     display: flex !important;
     flex-direction: column;
-    background-image: url('./assets/13-full.jpg'), url('./assets/13-low.jpg');
     background-size: cover;
     background-position: 20% 60%;
     position: sticky;
@@ -49,6 +48,7 @@ input {
     z-index: 0;
     box-shadow: inset 0 -100px 70px -70px black;
     /*box-shadow: inset 0 250px 100px -100px rgba(70, 0, 163, 0.9);*/
+    background-image: url('./assets/13-full.jpg'), url('./assets/13-low.jpg');
 }
 
 .avif .mobile_container {
@@ -153,8 +153,8 @@ input {
     display: none;
 }
 
-.About_Subcontainer div {
-    margin-left: 0 !important;
+.About_Text_Container {
+    margin: 0 !important;
 }
 
 .About_Title, .Contact_Title {
