@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="general-document.css">
+</head>
+
+<body>
+
+<form id="Form" method="post" action="https://script.google.com/macros/s/AKfycbzlA_cHGTjjQn5sTMLLpuGFkvOXpKLruGmA9MLg4PAtHthLOrpn/exec">
+
+    <div class="Info_Section">
+        <div>
+            <label for="Name">Full Legal Name:</label>
+            <input id="Full-Name" type="text" name="Name" autocomplete="off" pattern="..*\s..*" title="Must be your full legal name." oninvalid="this.setCustomValidity('Be sure to use your full legal name.')" oninput="this.setCustomValidity('')" required>
+        </div>
+
+        <div>
+            <label for="Artist-Name">Artist Name:</label>
+            <input id="Artist-Name" type="text" name="Artist Name" autocomplete="off" title="The name you use to publish your work." required>
+        </div>
+    </div>
+
+    <div class="Main_Text">
+        <img src="./assets/logo-3.svg" class="Header_Logo">
+
+        <h1>Radio and Promotion Agreement</h1>
+        <hr>
+        <div><p>Dated as of <span id="Date"></span></p></div>
+
+        <div>
+            <h2>Parties</h2>
+            <p>
+            <ul>
+                <li>Artist: <span id="Party_Legal_Name">{Full Legal Name}</span> (also known as the artistry, "<span id="Party_Artist_Name">{Artist Name}</span>")</li>
+                <li>Brand:  SixtySevenRadio, Florida, United States of America.</li>
+            </ul>
+            </p>
+        </div>
+
+        <div>
+            <h2>Grant of Rights</h2>
+            <p>This is an agreement between I, the Artist, and SixtySevenRadio, the Brand. I hereby grant SixtySevenRadio the right to modify, play, and promote my work. Modifications can include, but are not limited to, trimming silence and normalizing loudness. I acknowledge that I cannot make a DMCA claim or any other copyright infringement claim against its use. SixtySevenRadio is not obligated to compensate or accredit me for these works. Examples of situations that might cause failure to accredit would include, but are not limited to, profanity in title, invalid characters in title and technical difficulties. I confirm that I am the original owner of these works and understand that if I no longer wish to have my work used by SixtySevenRadio, I will communicate with the Brand and request removal.
+            </p>
+        </div>
+
+        <div class="Agree_Container">
+            <input id="Agree-Input" type="checkbox" name="Agreement" value="I agree" autocomplete="off" required>
+            <label for="Agreement">I agree</label>
+            <div class="Buttons_Container">
+                <button id="Form_Submit">Submit</button>
+            </div>
+            <div id="Warning" style="display: none;">This may take a few seconds. Do not refresh or leave the page.</div>
+        </div>
+    </div>
+
+</form>
+
+</body>
+
+<script type="text/javascript">
+
+    // Get elements
+    const legalNameInput = document.getElementById("Full-Name")
+    const artistNameInput = document.getElementById("Artist-Name")
+    const dateElement = document.getElementById("Date")
+    const agreeInput = document.getElementById("Agree-Input")
+    const partyLegalName = document.getElementById("Party_Legal_Name")
+    const partyArtistName = document.getElementById("Party_Artist_Name")
+
+    // Link inputs
+    legalNameInput.addEventListener('input', function() {partyLegalName.innerHTML = this.value;});
+    artistNameInput.addEventListener('input', function() {partyArtistName.innerHTML = this.value;});
+
+    // Obtain date from server
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', window.location.origin);
+    xhr.onload = function() {
+        const date = new Date( Date.parse(xhr.getResponseHeader("Date")) )
+        dateElement.innerHTML = date.toLocaleDateString("en-us", {year: 'numeric', month: 'long', day: 'numeric'});
+    };
+    xhr.send();
+
+    // Send data to backend
+    const submitBtn = document.getElementById("Form_Submit")
+    const warning = document.getElementById("Warning")
+    var form = document.getElementById("Form")
+
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+
+        if (dateElement.innerHTML) {
+            alert('Failed to fetch the date. Try refreshing the page.')
+            return;
+        }
+
+        var formData = new FormData(form)
+        formData.append("Document", document.querySelector(".Main_Text").innerText);
+
+        submitBtn.innerHTML = 'Submitting...';
+        warning.style.display = "";
+
+        fetch(form.action, {
+            method : "POST",
+            body: formData,
+        }).then(
+            response => response.json()
+        ).then((html) => {
+            submitBtn.innerHTML = 'Submitted &#x2713';
+            warning.style.display = "none";
+        });
+
+        legalNameInput.disabled = true;
+        artistNameInput.disabled = true;
+        agreeInput.disabled = true;
+        submitBtn.disabled = true;
+    });
+</script>
+
+</html>
