@@ -94,7 +94,7 @@
     form.addEventListener("submit", e => {
         e.preventDefault();
 
-        if (dateElement.innerHTML) {
+        if (!dateElement.innerHTML) {
             alert('Failed to fetch the date. Try refreshing the page.')
             return;
         }
