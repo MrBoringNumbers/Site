@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="general_style.css">
+	<link rel="stylesheet" href="live.css">
+</head>
+
+<body>
+
+	<div class="theme_blend"></div>
+	
+	<div class="nav_container">
+		<div class='nav_bg'></div>
+
+		<div style="display: flex; align-items: start;">
+			<a href="." class="logo">
+	            <img id="logo" src="./assets/logo.svg" style="vertical-align: bottom;">
+	        </a>
+	        <div class="beta_btn" title="This page is still in development. Some functions may not work properly.">Beta</div>
+		</div>
+
+        <div id='nav' class="nav no-select hidden">
+        	<div class="mobile_nav_container">
+	            <ul class="mobile_nav_main_ul cascade">
+	                <li><a href="." class="inactive">Home<img src="./assets/house-fill.svg"></a></li>
+	                <li><a href="live" class="active">Radio<img src="./assets/broadcast.svg"></a></li>
+	                <li><a href="releases" class="inactive">Catalog<img src="./assets/vinyl-fill.svg"></a></li>
+	                <li><a href=".#about-us" class="inactive">About<img src="./assets/file-person.svg"></a></li>
+	                <li><a href="join" class="inactive">Join<img src="./assets/person-plus-fill.svg"></a></li>
+	            </ul>
+	            <ul class="mobile_nav_footer_ul cascade" style="display: none;">
+	                <li><a href="https://www.youtube.com/c/sixtysevenradio" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+	                <li><a href="https://www.twitch.tv/sixtysevenradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+	                <li><a href="https://instagram.com/sixtysevenradio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+	                <li><a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" target="_blank" rel="noopener noreferrer">Spotify</a></li>
+	            </ul>
+	        </div>
+        </div>
+
+        <input id='mobile_nav' class="mobile_nav" style="display: none" type="image" src="./assets/hamburger.svg" onclick="Toggle_Mobile_Nav()" />
+    </div>
+
+    <div class="loader"></div>
+
+    <div class="appearance_menu appearance_closed">
+    	<button class="theme_caret_up"><img src="assets/caret.svg"></button>
+    	<div class="theme_container">
+    	</div>
+    	<button class="theme_caret_down"><img src="assets/caret.svg"></button>
+    	<button id="CleanUiBtn" title="Hide Controls" onclick="uiToggle();" class="clean_ui_btn"><img src="assets/hidew.svg"></button>
+    	<button id="AppearanceBtn" title="Appearance" onclick="OpenAppearance();" class="appearance_btn"><img src="assets/appearance.svg"></button>
+    </div>
+
+    <div class="song_details_container">
+    	<div class="song_details_cover cover_placeholder">
+    		<img id="Song_Cover" src="" srcset="" sizes="">
+    		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 225"><path d="M112.5,0C50.37,0,0,50.37,0,112.5s50.37,112.5,112.5,112.5,112.5-50.37,112.5-112.5S174.64,0,112.5,0Zm0,207.5c-52.46,0-95-42.53-95-95h16c0,43.63,35.37,79,79,79v16Zm0-20c-41.42,0-75-33.58-75-75h20c0,30.38,24.63,55,55,55v20Zm0-24c-28.16,0-51-22.83-51-51h13.5c0,20.71,16.79,37.5,37.5,37.5v13.5Zm0-28.5c-12.42,0-22.5-10.07-22.5-22.5s10.08-22.5,22.5-22.5,22.5,10.07,22.5,22.5-10.07,22.5-22.5,22.5Zm37.5-22.5c0-20.71-16.79-37.5-37.5-37.5v-13.5c28.17,0,51,22.83,51,51h-13.5Zm17.5,0c0-30.38-24.62-55-55-55v-20c41.42,0,75,33.58,75,75h-20Zm24,0c0-43.63-35.37-79-79-79V17.5c52.47,0,95,42.53,95,95h-16Z" style="fill:#fff; fill-rule:evenodd;"/></svg>
+    	</div>
+    	<div class="song_meta_container fade">
+    		<div class="Ticker" id="Song_Title_Ticker">
+    			<div><div id="Song_Title" class="song_title"></div></div>
+    		</div>
+    		<div class="Ticker" id="Song_Artist_Ticker">
+	    		<div><div id="Song_Artist" class="song_artist"></div></div>
+    		</div>
+    	</div>
+    </div>
+
+    <div class="eq_container" style="display: none">
+    	<div>
+    		<span>50</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq1_slider" oninput="Update_Eq(this.value,0);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>100</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq2_slider" oninput="Update_Eq(this.value,1);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>300</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq3_slider" oninput="Update_Eq(this.value,2);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>600</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq4_slider" oninput="Update_Eq(this.value,3);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>1.2k</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq5_slider" oninput="Update_Eq(this.value,4);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>2.4k</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq6_slider" oninput="Update_Eq(this.value,5);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>3.5k</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq7_slider" oninput="Update_Eq(this.value,6);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    	<div>
+    		<span>6k</span>
+    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq8_slider" oninput="Update_Eq(this.value,7);">
+    		<span id="eq_label">-0.0db</span>
+    	</div>
+    </div>
+
+    <div class="vote_container" style="visibility: hidden;">
+		<div class="vote_title">Vote on the next song... <span id="Vote_Countdown"></span><span id="voteLoader" class="inline_loader"></span></div>
+		<div class="vote_options_container">
+
+			<input type="radio" name="vote" id="vote_0">
+			<label class="vote_option" onclick="vote_socket.send('0')" for="vote_0">
+				<div class="option_art">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 225"><path d="M112.5,0C50.37,0,0,50.37,0,112.5s50.37,112.5,112.5,112.5,112.5-50.37,112.5-112.5S174.64,0,112.5,0Zm0,207.5c-52.46,0-95-42.53-95-95h16c0,43.63,35.37,79,79,79v16Zm0-20c-41.42,0-75-33.58-75-75h20c0,30.38,24.63,55,55,55v20Zm0-24c-28.16,0-51-22.83-51-51h13.5c0,20.71,16.79,37.5,37.5,37.5v13.5Zm0-28.5c-12.42,0-22.5-10.07-22.5-22.5s10.08-22.5,22.5-22.5,22.5,10.07,22.5,22.5-10.07,22.5-22.5,22.5Zm37.5-22.5c0-20.71-16.79-37.5-37.5-37.5v-13.5c28.17,0,51,22.83,51,51h-13.5Zm17.5,0c0-30.38-24.62-55-55-55v-20c41.42,0,75,33.58,75,75h-20Zm24,0c0-43.63-35.37-79-79-79V17.5c52.47,0,95,42.53,95,95h-16Z" style="fill:#fff; fill-rule:evenodd;"></path></svg>
+					<img src="">
+				</div>
+				<div class="option_text">
+					<div class="option_title"></div><span>by</span><div class="option_artist"></div>
+				</div>
+				<svg class="vote_checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.5 16.5"><path d="M12.28,5.22c.29,.29,.29,.76,.01,1.05l-3.99,4.99-.02,.02c-.29,.29-.77,.29-1.06,0l-2.65-2.65c-.26-.29-.26-.73,0-1.02,.29-.3,.76-.32,1.06-.04l2.1,2.1,3.47-4.43s.01,0,.02-.02c.29-.29,.77-.29,1.06,0Z" fill="#00d176"/><path d="M8.25,.25c4.42,0,8,3.58,8,8s-3.58,8-8,8S.25,12.67,.25,8.25,3.83,.25,8.25,.25Zm4.04,6.02c.28-.29,.28-.76-.01-1.05s-.77-.29-1.06,0c0,.01,0,.02-.02,.02l-3.47,4.43-2.1-2.1c-.3-.28-.77-.26-1.06,.04-.26,.29-.26,.73,0,1.02l2.65,2.65c.29,.29,.77,.29,1.06,0l.02-.02,3.99-4.99Z" fill="#fff"/></svg>
+			</label>
+
+			<input type="radio" name="vote" id="vote_1">
+			<label class="vote_option" onclick="vote_socket.send('1')" for="vote_1">
+				<div class="option_art">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 225"><path d="M112.5,0C50.37,0,0,50.37,0,112.5s50.37,112.5,112.5,112.5,112.5-50.37,112.5-112.5S174.64,0,112.5,0Zm0,207.5c-52.46,0-95-42.53-95-95h16c0,43.63,35.37,79,79,79v16Zm0-20c-41.42,0-75-33.58-75-75h20c0,30.38,24.63,55,55,55v20Zm0-24c-28.16,0-51-22.83-51-51h13.5c0,20.71,16.79,37.5,37.5,37.5v13.5Zm0-28.5c-12.42,0-22.5-10.07-22.5-22.5s10.08-22.5,22.5-22.5,22.5,10.07,22.5,22.5-10.07,22.5-22.5,22.5Zm37.5-22.5c0-20.71-16.79-37.5-37.5-37.5v-13.5c28.17,0,51,22.83,51,51h-13.5Zm17.5,0c0-30.38-24.62-55-55-55v-20c41.42,0,75,33.58,75,75h-20Zm24,0c0-43.63-35.37-79-79-79V17.5c52.47,0,95,42.53,95,95h-16Z" style="fill:#fff; fill-rule:evenodd;"></path></svg>
+					<img src="">
+				</div>
+				<div class="option_text">
+					<div class="option_title"></div><span>by</span><div class="option_artist"></div>
+				</div>
+				<svg class="vote_checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.5 16.5"><path d="M12.28,5.22c.29,.29,.29,.76,.01,1.05l-3.99,4.99-.02,.02c-.29,.29-.77,.29-1.06,0l-2.65-2.65c-.26-.29-.26-.73,0-1.02,.29-.3,.76-.32,1.06-.04l2.1,2.1,3.47-4.43s.01,0,.02-.02c.29-.29,.77-.29,1.06,0Z" fill="#00d176"/><path d="M8.25,.25c4.42,0,8,3.58,8,8s-3.58,8-8,8S.25,12.67,.25,8.25,3.83,.25,8.25,.25Zm4.04,6.02c.28-.29,.28-.76-.01-1.05s-.77-.29-1.06,0c0,.01,0,.02-.02,.02l-3.47,4.43-2.1-2.1c-.3-.28-.77-.26-1.06,.04-.26,.29-.26,.73,0,1.02l2.65,2.65c.29,.29,.77,.29,1.06,0l.02-.02,3.99-4.99Z" fill="#fff"/></svg>
+			</label>
+
+			<input type="radio" name="vote" id="vote_2">
+			<label class="vote_option" onclick="vote_socket.send('2')" for="vote_2">
+				<div class="option_art">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 225"><path d="M112.5,0C50.37,0,0,50.37,0,112.5s50.37,112.5,112.5,112.5,112.5-50.37,112.5-112.5S174.64,0,112.5,0Zm0,207.5c-52.46,0-95-42.53-95-95h16c0,43.63,35.37,79,79,79v16Zm0-20c-41.42,0-75-33.58-75-75h20c0,30.38,24.63,55,55,55v20Zm0-24c-28.16,0-51-22.83-51-51h13.5c0,20.71,16.79,37.5,37.5,37.5v13.5Zm0-28.5c-12.42,0-22.5-10.07-22.5-22.5s10.08-22.5,22.5-22.5,22.5,10.07,22.5,22.5-10.07,22.5-22.5,22.5Zm37.5-22.5c0-20.71-16.79-37.5-37.5-37.5v-13.5c28.17,0,51,22.83,51,51h-13.5Zm17.5,0c0-30.38-24.62-55-55-55v-20c41.42,0,75,33.58,75,75h-20Zm24,0c0-43.63-35.37-79-79-79V17.5c52.47,0,95,42.53,95,95h-16Z" style="fill:#fff; fill-rule:evenodd;"></path></svg>
+					<img src="">
+				</div>
+				<div class="option_text">
+					<div class="option_title"></div><span>by</span><div class="option_artist"></div>
+				</div>
+				<svg class="vote_checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.5 16.5"><path d="M12.28,5.22c.29,.29,.29,.76,.01,1.05l-3.99,4.99-.02,.02c-.29,.29-.77,.29-1.06,0l-2.65-2.65c-.26-.29-.26-.73,0-1.02,.29-.3,.76-.32,1.06-.04l2.1,2.1,3.47-4.43s.01,0,.02-.02c.29-.29,.77-.29,1.06,0Z" fill="#00d176"/><path d="M8.25,.25c4.42,0,8,3.58,8,8s-3.58,8-8,8S.25,12.67,.25,8.25,3.83,.25,8.25,.25Zm4.04,6.02c.28-.29,.28-.76-.01-1.05s-.77-.29-1.06,0c0,.01,0,.02-.02,.02l-3.47,4.43-2.1-2.1c-.3-.28-.77-.26-1.06,.04-.26,.29-.26,.73,0,1.02l2.65,2.65c.29,.29,.77,.29,1.06,0l.02-.02,3.99-4.99Z" fill="#fff"/></svg>
+			</label>
+
+		</div>
+    </div>
+
+    <div class="controls_container">
+    	<button id="PausePlayBtn" title="Pause" onclick="TogglePlayState();"><img id="PausePlayImg" src="assets/play.svg" onload=""></button>
+    	<button id="EqBtn" title="Equalizer" onclick="OpenEQ();"><img src="assets/eq.svg"></button>
+
+    	<div class="volume_container">
+    		<button id="muteBtn" title="Mute" onclick="MuteToggle();"><img src="assets/volume-low.svg"></button>
+    		<input type="range" min="0" max="100" value="100" class="minimal_slider" id="VolumeSlider" oninput="audio.volume=this.value/100;" onchange="audio.volume=this.value/100;">
+    	</div>
+    	
+    	<div id="BitrateSelect" title="Quality" class="bitrate_container">
+    		<button class="bitrate_button" onclick="ToggleQualitiesMenu();" onfocusout="ToggleQualitiesMenu(0);">
+    			<svg id="bitrate_svg" class="bitrate_wave bitrate_animate" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 5">
+					<path d="M.5,0C.78,0,1,.22,1,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5C0,.22,.22,0,.5,0Z" fill-rule="evenodd"/>
+					<path d="M2.5,0C2.78,0,3,.22,3,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5C2,.22,2.22,0,2.5,0Z" fill-rule="evenodd"/>
+					<path d="M4.5,0c.28,0,.5,.22,.5,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5c0-.28,.22-.5,.5-.5Z" fill-rule="evenodd"/>
+					<path d="M6.5,0C6.78,0,7,.22,7,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5C6,.22,6.22,0,6.5,0Z" fill-rule="evenodd"/>
+					<path d="M8.5,0c.28,0,.5,.22,.5,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5c0-.28,.22-.5,.5-.5Z" fill-rule="evenodd"/>
+					<path d="M10.5,0C10.78,0,11,.22,11,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5C10,.22,10.22,0,10.5,0Z" fill-rule="evenodd"/>
+					<path d="M12.5,0c.28,0,.5,.22,.5,.5V4.5c0,.28-.22,.5-.5,.5s-.5-.22-.5-.5V.5c0-.28,.22-.5,.5-.5Z" fill-rule="evenodd"/>
+				</svg>
+	    		<div id="bitrate_label">---kbps</div>
+	    	</button>
+
+    		<div class="bitrate_menu">
+			</div>
+    	</div>
+    </div>
+
+    <div class="socials_container">
+        <a href="https://www.twitch.tv/sixtysevenradio" title="Twitch" target="_blank" rel="noopener noreferrer"><img src="./assets/twitch.svg"></a>
+        <a href="https://www.youtube.com/c/sixtysevenradio" title="YouTube" target="_blank" rel="noopener noreferrer"><img src="./assets/youtube.svg"></a>
+        <a href="https://instagram.com/sixtysevenradio" title="Instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram.svg"></a>
+        <a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" title="Spotify" target="_blank" rel="noopener noreferrer"><img src="./assets/spotify.svg"></a>
+    </div>
+    <audio preload="true" id="player" src='' style="display: none" autoplay controls crossorigin>
+</body>
+
+<script src="theme.js"></script>
+<script src="fast-average-color.js"></script>
+<script src="Vibrant.js"></script>
+<script src="color-thief.umd.js"></script>
+<script src="hls.js"></script>
+<script type="text/javascript">
+	console.log("%cNothing's ever good enough huh...", "color: springgreen; font-size: 15px");
+	console.log("%cIf you have any recomendations, let us know at contatc@sixtysevenradio.com", "color: springgreen;")
+
+	const server = 'https://cdn.sixtysevenradio.com'
+	const socket_addr = 'wss://cdn.sixtysevenradio.com:8088'
+	const playImg = document.getElementById('PausePlayImg');
+	const playBtn = document.getElementById('PausePlayBtn');
+	const loader = document.querySelector('.loader')
+	const vote_loader = document.getElementById('voteLoader')
+	const volume_slider = document.getElementById('VolumeSlider')
+
+	// Connect EQ
+	var context = new (window.AudioContext || window.webkitAudioContext)();
+	var audio = document.querySelector('audio')
+	var source = context.createMediaElementSource(audio);
+
+	audio.textTracks.onaddtrack = function(event) {event.track.oncuechange=UpdateSong; this.onaddtrack=null;}
+	audio.onplay = function() {playImg.src='./assets/pause.svg'; audio.currentTime = hls.liveSyncPosition; hls.startLoad(); navigator.mediaSession.playbackState = "playing"; playBtn.classList.remove('press_to_play_indicator')}
+	audio.onpause = function() {playImg.src='./assets/play.svg'; hls.stopLoad(); navigator.mediaSession.playbackState = "paused";}
+	audio.oncanplay = function() {this.volume=volume_slider.value/100}
+
+	const eq_bands = [];
+	for (let i=0; i < 8; i++) {eq_bands.push(context.createBiquadFilter());}
+	const frequencies = [50,100,300,600,1200,2400,3500,6000]
+
+	for (let i=0; i<eq_bands.length; i++) {
+		if (i==0) {
+			source.connect(eq_bands[i]);
+			eq_bands[i].type = "lowshelf";
+			eq_bands[i].frequency.value = frequencies[i];
+			eq_bands[i].gain.value = 0;
+			eq_bands[i].connect(eq_bands[i+1]);
+		}
+		else if (i==7) {
+			eq_bands[i].type = "highshelf";
+			eq_bands[i].frequency.value = frequencies[i];
+			eq_bands[i].gain.value = 0;
+			eq_bands[i].Q.value = 0.7;
+			eq_bands[i].connect(context.destination)
+		}
+		else {
+			eq_bands[i].type = "peaking";
+			eq_bands[i].frequency.value = frequencies[i];
+			eq_bands[i].gain.value = 0;
+			eq_bands[i].connect(eq_bands[i+1])
+		}
+	}
+
+
+	quality_label = document.getElementById("bitrate_label")
+	quality_menu = document.querySelector('.bitrate_menu')
+	function Set_Qualities() {
+		//console.log('Setting Quality Options...')
+		
+		hls.levels.forEach(function(e,i) {
+			var option = document.createElement("button");
+			option.innerHTML = e.bitrate/1000 + 'kbps';
+			if (e.bitrate == 320000) {option.innerHTML += ' '; var sup = document.createElement("sup"); sup.innerHTML = 'HD'; sup.style.fontWeight = '500'; option.append(sup);}
+			else if (e.bitrate == 256000) {/*hls.autoLevelCapping = i;*/}
+			//option.setAttribute("onclick", "UpdateSong("+i+")");
+			option.id = ''
+			option.setAttribute("onclick", "hls.loadLevel="+i+";");
+			quality_menu.prepend(option);
+		})
+
+		var option = document.createElement("button");
+		option.innerHTML = 'Auto';
+		option.setAttribute("onclick", "UpdateSong(-1)");
+		option.id = ''
+		quality_menu.append(option);
+	}
+
+	// Start Audio Stream
+	if (Hls.isSupported()) {
+		var hls = new Hls();
+		//hls.config.debug = true;
+		//hls.loadSource('https://stream.ram.radio/audio/ram.stream_aac/playlist.m3u8');
+		//hls.loadSource('./hls/index.m3u8');
+		hls.loadSource(server+'/index.m3u8');
+		hls.attachMedia(audio);
+		hls.on(Hls.Events.LEVEL_UPDATED, Preload_Cover)
+		hls.on(Hls.Events.MANIFEST_PARSED, Set_Qualities);
+		hls.on(Hls.Events.LEVEL_SWITCHING, function(e,d) {
+			//console.log(e,d)
+			quality_label.innerHTML = hls.levels[d.level].bitrate/1000+"kbps"
+			//quality_menu.children.forEach(e.classList.remove('bitrate_active'))
+			//quality_levels[d.level].classList.add('bitrate_active')
+		})
+	}
+
+
+	function ToggleQualitiesMenu(i) {
+		if ((quality_menu.style.visibility == "hidden" || quality_menu.style.visibility == "" || i==1) && i!=0) {
+			quality_menu.style.visibility = 'visible';
+			quality_menu.style.opacity = '1';
+			quality_menu.style.transform = 'translateY(0px)';
+			quality_menu.style.transitionDuration = '0s, 350ms, 350ms'
+		} else {
+			quality_menu.style.visibility = 'hidden';
+			quality_menu.style.opacity = '0';
+			quality_menu.style.transform = 'translateY(10px)';
+			quality_menu.style.transitionDuration = '350ms'
+		}
+	}
+
+
+	// Miniplayer
+	const details = document.querySelector('.song_details_container')
+	const socials = document.querySelector('.socials_container')
+	const controls = document.querySelector('.controls_container')
+
+	function Mainplayer() {
+		details.classList.remove('miniplayer');
+		controls.style.display = '';
+		socials.style.display = '';
+	}
+
+	function Miniplayer() {
+		details.classList.add('miniplayer');
+		controls.style.display = 'none';
+		socials.style.display = 'none';
+	}
+
+	const eq_cont = document.querySelector('.eq_container')
+	// Open EQ
+	function OpenEQ() {
+		Miniplayer();
+		eq_cont.style.display = '';
+		details.onclick = CloseEq;
+	}
+	function CloseEq() {
+		Mainplayer();
+		eq_cont.style.display = 'none';
+		details.onclick = '';
+	}
+
+	const vote_cont = document.querySelector('.vote_container')
+	function OpenVote(count) {
+		count = parseInt(count)
+		Miniplayer();
+		if (count >= 0) {
+			for (let i=0; i <= count; i++) {setTimeout(function(){vote_countdown.innerHTML=count-i;},1000*i)}
+			setTimeout(function(){vote_countdown.innerHTML='';}, 1000*(count+1))
+		} else {
+			vote_countdown.innerHTML = '';
+		}
+		
+		vote_cont.classList.add('vote_active');
+		vote_cont.style.visibility = '';
+		vote_cont.style.transition = '';
+		details.onclick = CloseVote;
+	}
+
+	function CloseVote(clean) {
+		vote_cont.classList.remove('vote_active')
+		if (clean === 1) {vote_cont.style.transition = 'visibility 1s'; vote_cont.style.visibility = 'hidden'; setTimeout(Mainplayer,500);}
+		else {vote_cont.style.transition = ''; vote_cont.style.visibility = 'hidden'; Mainplayer();}
+		details.onclick = '';
+	}
+
+	// Update EQ Bands
+	eq_sliders = document.querySelectorAll('.vertical_minimal_slider')
+	eq_labels = document.querySelectorAll('#eq_label')
+	function Update_Eq(value, i) {
+		f = (value-80)/5
+		eq_labels[i].innerHTML = f.toFixed(1) + 'db';
+		eq_bands[i].gain.value = f;
+	}
+
+
+	// Clean UI
+	const socials_cont = document.querySelector('.socials_container')
+	const controls_cont = document.querySelector('.controls_container')
+	const nav = document.querySelector('.nav')
+
+	function uiToggle() {
+		//console.log('Toggling Clean UI');
+		socials_cont.classList.toggle('clean_ui_element');
+		controls_cont.classList.toggle('clean_ui_element');
+		nav.classList.toggle('clean_ui_element');
+	}
+
+	const appearance_menu = document.querySelector('.appearance_menu')
+	const appearance_btn = document.getElementById('AppearanceBtn')
+
+	function OpenAppearance() {
+		appearance_menu.classList.remove('appearance_closed')
+		appearance_btn.onclick = CloseAppearance;
+	}
+
+	function CloseAppearance() {
+		appearance_menu.classList.add('appearance_closed')
+		appearance_btn.onclick = OpenAppearance;
+	}
+
+
+
+
+
+
+
+	volCont = document.querySelector('.volume_container')
+	muteBtn = document.getElementById('muteBtn')
+	function MuteToggle() {
+		if (audio.muted) {
+			volCont.classList.remove('volume_mute')
+			audio.muted = false;
+			muteBtn.title = 'Mute';
+		}	
+		else {
+			volCont.classList.add('volume_mute')
+			audio.muted = true;
+			muteBtn.title = 'Unmute';
+		}
+	}
+
+
+	// OS player intergration
+	const artistElement = document.getElementById('Song_Artist')
+	const songElement = document.getElementById('Song_Title')
+	const songTicker = document.getElementById('Song_Title_Ticker')
+	const artistTicker = document.getElementById('Song_Artist_Ticker')
+	const coverCont = document.querySelector('.song_details_cover')
+	const coverElement = document.getElementById('Song_Cover')
+
+	const vote_options_cont = document.querySelector('.vote_options_container')
+	vote_options = document.querySelectorAll('.vote_option')
+	const vote_countdown = document.getElementById('Vote_Countdown')
+
+
+
+	// from https://stackoverflow.com/a/5624139
+	function hexToRgb(hex) {
+	  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+	    return r + r + g + g + b + b;
+	  });
+
+	  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	  return result ? {
+	    r: parseInt(result[1], 16),
+	    g: parseInt(result[2], 16),
+	    b: parseInt(result[3], 16)
+	  } : null;
+	}
+
+	function rgbToHex(r, g, b) {
+		return '#' + [r, g, b].map(x => {
+		  const hex = x.toString(16)
+		  return hex.length === 1 ? '0' + hex : hex
+		}).join('')
+	}
+
+	// Distance between 2 colors (in RGB)
+	// https://stackoverflow.com/questions/23990802/find-nearest-color-from-a-colors-list
+	function distance(a, b) {
+	    return Math.sqrt(Math.pow(a.r - b.r, 2) + Math.pow(a.g - b.g, 2) + Math.pow(a.b - b.b, 2));
+	}
+
+	const themeBlend = document.querySelector('.theme_blend')
+
+	// return nearest color from array
+	function getNearestColor(colorHex){
+		var lowest = Number.POSITIVE_INFINITY;
+		var tmp;
+		let index = 0;
+		window.themes.forEach( (el, i) => {
+		  tmp = distance(hexToRgb(colorHex), hexToRgb(el.mean))
+		  if (tmp < lowest) {
+		    lowest = tmp;
+		    index = i;
+		  };
+		  
+		})
+		//console.log('Theme Auto Select:', index)
+		return index
+	}
+
+
+	function Auto_Pick_Theme() {
+		coverElement.onload = null
+
+		if (!window.themes) {
+		  	setTimeout(Auto_Pick_Theme, 1000);
+		  	//console.log('delaying auto theme');
+		  	return;
+		}
+
+		// FAC
+		const fac = new FastAverageColor();
+		fac.getColorAsync(coverElement, {mode: 'precision', algorithm: 'dominant'}).then(color => {
+                //console.log('FAC:', color)
+            }).catch(e => {
+                //console.log(e);
+            });
+
+        // Vibrant
+        b = new Vibrant(coverElement)
+        b = b.VibrantSwatch.getHex()
+        //console.log('Vibrant:', b)
+
+        //console.log(a)
+        //for (const x of ['DarkMutedSwatch', 'DarkVibrantSwatch', 'LightMutedSwatch', 'LightVibrantSwatch', 'MutedSwatch', 'VibrantSwatch']) {
+        //	console.log(a[x].getHex())
+		//}
+
+		// Color Theif
+		const colorThief = new ColorThief();
+		a = colorThief.getPalette(coverElement);
+		//console.log('theif')
+		a.forEach(function(x,i) {
+			//console.log(rgbToHex(x[0], x[1], x[2]))
+		})
+
+		index = getNearestColor(rgbToHex(a[3][0], a[3][1], a[3][2]))
+		setTheme(index)
+	}
+
+	function setTheme(index) {
+		//console.log('SETTING THEME:', index)
+		if (!window.themes) {
+			//console.log('DELAYING SET THEME...')
+			setTimeout(function() {setTheme(index)}, 1000)
+		} else {
+			themeBlend.style.transitionDuration = '0s';
+			themeBlend.style.backgroundImage = document.body.style.backgroundImage;
+			themeBlend.style.opacity = '1';
+			document.body.style.backgroundImage = window.themes[index]['data'];
+			setTimeout(function() {themeBlend.style.opacity = '0'; themeBlend.style.transitionDuration = '700ms';}, 1)
+			if (window.themes[index].dark) {socials.classList.add('dark')}
+			else {socials.classList.remove('dark')}
+		}	
+	}
+
+
+
+	// Set theme buttons
+	const themeCont = document.querySelector('.theme_container')
+	function loadThemeButtons() {
+		window.themes.forEach(function(x,i) {
+			//console.log(x)
+			var btn = document.createElement("button");
+			btn.title = x.name
+			btn.style.backgroundImage = x.data
+			btn.onmouseover = function() {setTheme(i)}
+			themeCont.appendChild(btn)
+		})
+	}
+	
+
+
+	var DateRangeId, cover
+	const preload = new Image()
+
+	function Preload_Cover(e,d) {
+		var newDateRangeId = Object.keys(d.details.dateRanges)[0]
+		if (newDateRangeId != DateRangeId) {
+			DateRangeId = newDateRangeId;
+			cover = d.details.dateRanges[DateRangeId].attr['COVER'].replace(/'/g,'"');
+			if (cover) {cover = JSON.parse(cover);preload.src = cover['300'];}
+		}
+	}
+
+	var firstLoad = true;
+	const option_titles = document.querySelectorAll('.option_title');
+	const option_artists = document.querySelectorAll('.option_artist');
+	const option_arts = document.querySelectorAll('.option_art img');
+	const option_inputs = document.querySelectorAll('.vote_options_container input')
+
+	function UpdateSong() {
+
+		var artist = audio.textTracks[0].activeCues[0].value['data'];
+		var song = audio.textTracks[0].activeCues[1].value['data'];
+		//var cover = audio.textTracks[0].activeCues[2].value['data'].replace(/'/g,'"');
+		//if (cover) {cover = JSON.parse(cover)}
+		//cover = JSON.parse('{"640": "https://dummyimage.com/640x640", "300": "https://dummyimage.com/300x300", "120": "https://dummyimage.com/120x120", "60": "https://dummyimage.com/60x60"}')
+
+		var coverIter = Object.entries(cover)
+
+		//console.log('updating song...', artist, song)
+
+		artistElement.innerHTML = artist;
+		songElement.innerHTML = song;
+		artistTicker.style.animationDuration = artist.length*200 + 'ms' // 200ms per char
+		songTicker.style.animationDuration = song.length*200 + 'ms'
+
+		coverElement.srcset = ''
+		coverElement.sizes = ''
+
+		if (cover) {
+			//window.onresize = function(){coverElement.src = };
+			coverElement.src = preload.src
+			coverCont.classList.remove('cover_placeholder')
+			coverElement.onload = Auto_Pick_Theme
+		}
+		else {
+			// Default Theme
+			//window.onresize = undefined;
+			coverCont.classList.add('cover_placeholder')
+			setTheme(7)
+		}
+
+		if (firstLoad) {
+			loader.classList.add('hide_loader');
+			setTimeout(function(){loader.style.display='none';},200)
+			details.style.display = 'flex';
+			firstLoad = false;
+			if (audio.paused) {playBtn.classList.add('press_to_play_indicator')}
+		};
+
+		if (cover) {
+			artwork = []
+			i=0
+			for (const [key, value] of coverIter) {
+				artwork.push({src: value, sizes: key+'x'+key, type: 'image/jpeg'});
+
+				//if (i > 0) {
+				//	coverElement.srcset += ', '
+				//	coverElement.sizes += ', '
+				//}
+				//coverElement.srcset += `${value} ${key}w`
+				//coverElement.sizes += `(max-height: ${key}px) ${key}px`
+				
+				i+=1
+			}
+		} else {artwork = [{src: './assets/player_placeholder.jpg', sizes: '640x640', type: 'image/jpeg'}]}
+
+		if ('mediaSession' in navigator) {
+		  navigator.mediaSession.metadata = new MediaMetadata({
+		    title: song,
+		    artist: artist,
+		    album: 'SixtySevenRadio',
+		    artwork: artwork
+		  });
+
+		  navigator.mediaSession.setActionHandler('play', () => {audio.play()});
+		  navigator.mediaSession.setActionHandler('pause', () => {audio.pause()});
+		}
+
+		// Fetch Voting JSON
+		const vote_xhr = new XMLHttpRequest();
+		vote_xhr.open("GET", server+"/vote.json");
+
+		// via Cache-Control header
+	    vote_xhr.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+	    // fallbacks for IE and older browsers
+	    vote_xhr.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
+	    vote_xhr.setRequestHeader("Pragma", "no-cache");
+
+		vote_xhr.onload = function() {
+			// Reset Selection
+			option_inputs.forEach(function(x){x.checked=false;x.disabled=false;})
+			vote_options.forEach(function(x){x.classList.remove('vote_selected')})
+			vote_loader.style.display = '';
+
+			// Set Options
+			var options = JSON.parse(this.responseText);
+			options.forEach(function(x,i) {
+				option_titles[i].innerHTML = x.title;
+				option_artists[i].innerHTML = x.artist;
+				if (x.cover) {option_arts[i].src = x.cover["150"]}
+				else {option_arts[i].src = ''}
+			})
+		}
+		
+		vote_xhr.send();
+	}
+
+	function TogglePlayState() {
+		(audio.paused) ? audio.play() : audio.pause()
+	}
+
+	// Voting Socket
+	let vote_socket = new WebSocket(socket_addr);
+	vote_socket.onmessage = function(event) {
+		msg = Number(event.data)
+		if (msg != undefined) {
+			if (msg < 0) {OpenVote(-1*msg);}
+			else {
+				//console.log('Vote result:', msg)
+				vote_loader.style.display = 'none';
+				vote_options.forEach(function(e,i){
+					if (i!=msg) {e.classList.remove('vote_selected'); option_inputs[i].disabled = true;}
+					else {e.classList.add('vote_selected')}
+				});
+				setTimeout(function(){CloseVote(1)},2000)
+			}
+		}
+	};
+
+</script>
+
+<script src="ticker.js"></script>
+
+</html>

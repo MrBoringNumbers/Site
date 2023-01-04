@@ -64,6 +64,11 @@
     font-weight: 100 900;
 }
 
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./fonts/Bahnschrift.ttf');
+}
+
 /* End Fonts */
 
 
@@ -95,6 +100,17 @@ h1, h2, h3, h4, h5, h6 {
   100% {opacity: 0.2;}
 }
 
+@keyframes ticker-container {
+  0%, 10%   {transform: translate3d(0,0,0);}
+  90%, 100% {transform: translate3d(100%,0,0);}
+}
+
+@keyframes ticker-child {
+  0%, 10%   {transform: translate3d(0,0,0);}
+  90%, 100% {transform: translate3d(-100%,0,0);}
+}
+
+
 /* End Animations */
 
 
@@ -124,6 +140,36 @@ footer {
 
 a {
     text-decoration: none;
+}
+
+.Ticker {
+    overflow: hidden;
+    display: block;
+}
+
+.Ticker div {
+    width: 100%;
+    transform: translate3d(0,0,0)
+}
+
+.Ticker div div {
+    display: inline-block;
+    min-width: 100%;
+    width: auto;
+    position: relative;
+    transform: translate3d(0,0,0)
+}
+
+.Ticker:hover div {
+    animation: ticker-container alternate infinite linear;
+    animation-duration: inherit;
+    animation-delay: 0.5s;
+}
+
+.Ticker:hover div div {
+    animation: ticker-child alternate infinite linear;
+    animation-duration: inherit;
+    animation-delay: inherit;
 }
 
 .no-select {
@@ -210,7 +256,7 @@ a {
     display: inline-block;
     position: relative;
     z-index: 3;
-    padding: 0 40px;
+    margin-left: 40px;
 }
 
 .logo img {
@@ -235,13 +281,27 @@ a {
     display: none;
 }
 
+.live_indicator {
+    background: #ff0048;
+    color: #fff;
+    border-radius: 15%;
+    padding: 1px 4px;
+    font-size: 10px;
+    position: relative;
+    top: -3px;
+    font-weight: 600;
+    left: -8px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 0 10px #ff3000b3;
+}
+
 .mobile_nav_main_ul {
     text-align: right;
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     padding: 0 40px;
 }
-
 
 .mobile_nav_main_ul li {
     display: inline-block;

@@ -1,0 +1,850 @@
+:root {
+    --ThemeGradient: linear-gradient(45deg, #0087ff, #101671);
+}
+
+html {
+	height: 100%;
+}
+
+@keyframes blend {
+	0%   {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes rise {
+	0%   {transform: translate(-50%,-40%); opacity: 0;}
+	100% {transform: translate(-50%,-50%); opacity: 1;}
+}
+
+@keyframes pop {
+	0%   {transform: scale(0.8); opacity: 0; box-shadow: none;}
+	100% {transform: scale(1); opacity: 1; box-shadow: 6px 7px 7px -2px rgba(0,0,0,0.5);}
+}
+
+@keyframes spin {
+	0%         {transform-origin: center; transform: rotate(0deg);}
+	10%,50%   {transform-origin: center; transform: rotate(180deg);}
+	60%,100%   {transform-origin: center; transform: rotate(360deg);}
+}
+
+@keyframes loader_spin {
+	0%     {transform-origin: center; transform: rotate(0deg);}
+	100%   {transform-origin: center; transform: rotate(360deg);}
+}
+
+@keyframes flash {
+	0%,40%   {outline-width: 0; outline-color: rgba(255,255,255,0.9);}
+	100% {outline-width: 15px; outline-color: rgba(255,255,255,0);}
+}
+
+
+body {
+	background-image: linear-gradient(45deg, #0087ff, #101671);
+	background-image: var(--ThemeGradient);
+	background-size: 101%, 101%;
+	overflow: hidden;
+	height: 100%;
+	position: relative;
+	min-width: 720px;
+	min-height: 400px;
+}
+
+.theme_blend {
+	background-image: linear-gradient(45deg, #0087ff, #101671);
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	transition-property: opacity, visibility;
+	transition-duration: 700ms;
+	transition-timing-function: linear;
+	/*animation: 1s blend;*/
+}
+
+.alt_loader {
+	border: 2px solid white;
+	border-top: 7px solid white;
+}
+
+.loader {
+	border: 3px solid rgba(255,255,255,0.1);
+	border-radius: 50%;
+	border-top-color: white;
+	width: 60px;
+	height: 60px;
+	opacity: 1;
+	animation: 2s loader_spin infinite linear;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+}
+
+.inline_loader {
+	border: 2px solid rgba(255, 255, 255, 0.25);
+	border-radius: 50%;
+	border-top-color: white;
+	width: 25px;
+	height: 25px;
+	animation: 2s loader_spin infinite linear;
+	translate: 0 -2px;
+	display: none;
+	vertical-align: text-top;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+.press_to_play_indicator {
+	outline: 0px solid rgba(255,255,255,0);
+	border-radius: 50%;
+	outline-width: 0;
+	animation: flash 2.2s infinite;
+	animation-timing-function: cubic-bezier(.17,.84,.44,1) ;
+}
+
+#Vote_Countdown:empty ~ .inline_loader {display: inline-flex;}
+
+.hide_loader {
+	transition: 150ms opacity;
+	opacity: 0;
+}
+
+.inactive:after {
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: none;
+}
+
+.active {
+	background: rgba(255, 255, 255, 0.2);
+	box-shadow: 3px 5px 10px -1px rgba(0, 0, 0, 0.3);
+}
+
+.fade {
+	-webkit-mask-image: linear-gradient(90deg, #000 90%, transparent);
+	-webkit-mask-image: linear-gradient(90deg, #000 calc(min(700px,40vw) - 90px), transparent);
+	-webkit-mask-size: min(700px,40vw) auto;
+	-webkit-mask-repeat: no-repeat;
+}
+
+.beta_btn {
+	top: 30px;
+	left: 130px;
+	margin-left: 12px;
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 12pt;
+	font-weight: 500;
+	color: rgb(255, 255, 255);
+	background: #ffffff3d;
+	padding: 0 5px;
+	border-radius: 5px;
+	cursor: help;
+	z-index: 3;
+	transition: 300ms;
+}
+
+
+
+
+
+.song_details_container {
+	display: none;
+	justify-content: center;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-40%);
+	opacity: 0;
+	animation: rise 1s 0.2s forwards;
+}
+
+.song_details_cover {
+	max-height: 225px;
+	max-width: 225px;
+	min-height: 100px;
+	min-width: 100px;
+	height: 225px;
+	width: 225px;
+	height: min(225px, 30vh);
+	width: min(225px, 30vh);
+
+	margin-right: 50px;
+	box-shadow: 10px 18px 25px rgba(0,0,0,0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.song_details_cover.cover_placeholder {
+	outline: 2px solid rgba(255, 255, 255, 0.25);
+	border-radius: 11px;
+}
+
+.song_details_cover img {
+	height: 100%;
+}
+
+.song_details_cover.cover_placeholder img {
+	display: none;
+}
+
+.song_details_cover svg {
+	height: 45%;
+	filter: drop-shadow(15px 15px 5px rgba(0, 0, 0, 0.15));
+	display: none;
+}
+
+.song_details_cover.cover_placeholder svg {
+	display: initial;
+}
+
+.song_details_cover path {
+	animation: 20s spin infinite cubic-bezier(.77,0,.18,1);
+}
+
+.song_meta_container {
+	color: white;
+	font-family: 'Bahnschrift', sans-serif;
+	/*padding-left: 50px;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	white-space: nowrap;
+	max-width: min(700px,40vw);
+}
+
+.song_title {
+	font-size: 40pt;
+	font-weight: 700;
+}
+
+.song_artist {
+	font-size: 30pt;
+	font-weight: 300;
+}
+
+
+.song_details_container.miniplayer {
+	display: flex;
+	justify-content: left;
+	top: auto;
+	transform: none;
+	opacity: 1;
+	bottom: 35px;
+	position: absolute;
+	animation: none;
+	left: 50px;
+	height: 70px;
+	cursor: pointer;
+}
+
+.song_details_container.miniplayer .song_details_cover {
+	margin-right: 30px;
+	min-height: 70px;
+	min-width: 70px;
+	height: 100%;
+	width: 100%;
+	box-shadow: none;
+}
+
+.song_details_container.miniplayer .song_details_cover.cover_placeholder {
+	display: none;
+}
+
+.song_details_container.miniplayer .song_meta_container .song_title {
+	font-size: 25.2pt;
+	font-weight: 700;
+}
+
+.song_details_container.miniplayer .song_meta_container .song_artist {
+	font-size: 21pt;
+	font-weight: 300;
+}
+
+
+
+.controls_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 500px;
+	z-index: 1;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 100px;
+	transition: bottom 300ms;
+}
+
+.controls_container button {
+	height: 40px;
+	background: none;
+	border: none;
+	transition: opacity 0.2s;
+	cursor: pointer;
+}
+
+.controls_container button:hover {
+	opacity: 0.65;
+}
+
+.controls_container button img {
+	height: 100%;
+	filter: invert(1);
+}
+
+.bitrate_container {
+	display: inline;
+	align-items: center;
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 13pt;
+	font-weight: 400;
+	color: white;
+	height: 100%;
+	cursor: pointer;
+	transition: opacity 0.2s;
+	position: relative;
+}
+
+.bitrate_container img {
+	height: 100%;
+	padding-right: 10px;
+}
+
+.bitrate_container button div {
+	height: 100%;
+	display: inline;
+	vertical-align: text-bottom;
+}
+
+.bitrate_menu {
+	position: absolute;
+	right: -10px;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	text-align: left;
+	bottom: 100%;
+	width: 139%;
+	margin-bottom: 15px;
+	background: rgba(255, 255, 255, 0.14);
+	backdrop-filter: blur(10px);
+	border-radius: 6px;
+	box-shadow: 5px 7px 10px rgba(0, 0, 0, 0.13);
+	height: auto !important;
+	overflow: hidden;
+	
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+
+	transition-property: visibility, opacity, transform;
+	transition-duration: 0s, 500ms, 500ms;
+}
+
+.bitrate_menu button {
+	padding: 6px 10px;
+	width: 100%;
+	font-size: 10pt;
+	text-align: right;
+	color: white;
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 10pt;
+	height: auto !important;
+}
+
+.bitrate_menu button:first-child {
+	padding-top: 7px;
+}
+
+.bitrate_menu button:last-child {
+	padding-bottom: 7px;
+}
+
+.bitrate_menu button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	opacity: 1;
+}
+
+.bitrate_active {
+	background: linear-gradient(90deg, #0087ff, #2968df) !important;
+}
+
+.bitrate_button {
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 13pt;
+	font-weight: 400;
+	color: white;
+}
+
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scaleY(0.3);
+	}
+}
+
+.bitrate_wave {
+	height: 15px;
+	filter: invert(1);
+	margin-right: 10px;
+}
+
+.bitrate_wave path {
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: 50% 50%;
+}
+
+.bitrate_animate path {animation: pulse 0.6s linear infinite alternate;}
+.bitrate_animate path:nth-child(1) {animation-delay: 200ms;}
+.bitrate_animate path:nth-child(2) {animation-delay: 400ms;}
+.bitrate_animate path:nth-child(3) {animation-delay: 600ms;}
+.bitrate_animate path:nth-child(4) {animation-delay: 800ms;}
+.bitrate_animate path:nth-child(5) {animation-delay: 1000ms;}
+.bitrate_animate path:nth-child(6) {animation-delay: 1200ms;}
+.bitrate_animate path:nth-child(7) {animation-delay: 1400ms;}
+
+
+
+
+.volume_container {
+	display: flex;
+	align-items: center;
+}
+
+.volume_container img {
+	filter: invert(1);
+}
+
+.volume_container button {
+	height: 30px;
+	margin-right: 5px;
+}
+
+.volume_mute img {
+	content: url('/assets/volume-mute.svg');
+}
+
+
+
+.eq_container {
+	display: flex;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	width: 700px;
+	width: min(80vw, 700px);
+	min-width: 580px;
+	left: 50%;
+	justify-content: space-between;
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 15pt;
+	color: white;
+}
+
+.eq_container div {
+	width: 10px;
+	height: min(500px);
+	height: min(calc(100vh - 300px), 500px);
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.eq_container div span {
+	padding: 2px 10px;
+	border-radius: 7px;
+	background-color: rgba(0, 0, 0, 0.14);
+	outline: none;
+}
+
+
+
+.vertical_minimal_slider::-moz-range-progress, .minimal_slider::-moz-range-progress {
+  background-color: white;
+  border-radius: 10px;
+  height: 7px;
+}
+
+.vertical_minimal_slider::-moz-range-thumb, .minimal_slider::-moz-range-thumb {
+  opacity: 0%;
+  width: 0px;
+  height: 0px;
+}
+
+.vertical_minimal_slider, .minimal_slider {
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	height: 7px;
+	cursor: pointer;
+	width: 130px;
+}
+
+
+
+.vertical_minimal_slider::-moz-range-progress {
+	height: 12px;
+	border-radius: 10px;
+}
+
+.vertical_minimal_slider {
+	transform: rotateZ(-90deg);
+	width: 400px;
+	width: min(calc(100vh - 400px), 400px);
+	min-width: 100px;
+	height: 12px;
+	/*box-shadow: 30px 35px 15px 4px rgba(0,0,0,0.4);*/
+}
+
+
+
+.vote_container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	width: 600px;
+	max-width: 90%;
+	justify-content: space-between;
+	font-family: 'Bahnschrift', sans-serif;
+	font-size: 15pt;
+	color: white;
+	text-align: center;
+}
+
+.vote_options_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.vote_title {
+	margin-bottom: 10px;
+	font-weight: 300;
+	font-size: 20pt;
+}
+
+.vote_option {
+	width: 100%;
+	border-radius: 10px;
+	border: 2px solid rgba(255,255,255,0.5);
+	box-shadow: 20px 30px 22px rgba(0, 0, 0, 0.5);
+	box-shadow: 17px 24px 15px rgba(0, 0, 0, 0.25);
+	display: flex;
+	height: 80px;
+	text-align: center;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 35px;
+	padding: 10px 25px;
+	cursor: pointer;
+	background: none;
+	outline: none;
+	font: inherit;
+	color: inherit;
+	outline: 0 solid rgba(255,255,255,0.8);
+}
+
+.vote_options_container input:checked + .vote_option {outline: 9px solid rgba(255,255,255,0); transition-property: opacity, transform, border, box-shadow, height, margin, outline;}
+.vote_options_container input:enabled + .vote_option:hover {border: 2px solid white;}
+
+.vote_option, .vote_title {
+	transform: translateX(50px);
+	opacity: 0;
+	transition-property: opacity, transform, border, box-shadow, height, margin;
+	transition-duration: 1s, 1s, 170ms, 400ms, 400ms, 400ms, 600ms;
+}
+
+.option_art {
+	max-height: 100%;
+	height: 52px;
+	box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
+	position: relative;
+}
+
+.option_art img {
+	height: 100%;
+	position: absolute;
+	left: 0;
+	border-radius: 5px;
+}
+
+.option_art svg {
+	height: 100%;
+	padding: 8px;
+	background: #ffffff3d;
+	border-radius: 6px;
+}
+
+.vote_checkmark {
+	right: 30px;
+	left: unset;
+	border-radius: 100%;
+	max-height: min(35px, 100%);
+	margin-left: 17px;
+	opacity: 0;
+}
+
+.vote_selected .vote_checkmark {animation: pop 150ms 200ms forwards;}
+
+.vote_won {
+	opacity: 1;
+	transform: scale(1);
+	box-shadow: 6px 7px 7px -2px rgba(0,0,0,0.5);
+}
+
+.option_text {
+	max-width: 300px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.option_text div {
+	max-width: 300px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.option_text span {
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 12pt;
+	margin: 0 0.4em;
+	display: none;
+}
+
+.vote_active.vote_container .vote_title, .vote_active.vote_container .vote_option {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.vote_option:nth-child(2) {transition-delay: 100ms, 100ms, 0s, 0s, 0s, 0s, -100ms;}
+.vote_option:nth-child(4) {transition-delay: 200ms, 200ms, 0s, 0s, 0s, 0s, -100ms;}
+.vote_option:nth-child(6) {transition-delay: 300ms, 300ms, 0s, 0s, 0s, 0s, -100ms;}
+
+.vote_options_container input {display: none;}
+.vote_options_container input:checked + label {border-color: white;}
+.vote_active .vote_options_container input:disabled + label {opacity: 0.3 !important; box-shadow: none;}
+
+
+
+
+.socials_container {
+	display: flex;
+	width: 170px;
+	justify-content: space-between;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 40px;
+	transition: filter 600ms 100ms;
+}
+
+.socials_container a {
+	opacity: 0.5;
+	transition: 0.2s;
+	height: 20px;
+}
+
+.socials_container.dark {filter: invert(1);}
+.socials_container.dark a:hover {filter: unset;}
+
+.socials_container a:hover {
+	filter: invert(1);
+	opacity: 1;
+}
+
+.socials_container a img {
+	height: 25px;
+}
+
+
+
+.appearance_btn {
+	border: none;
+	background: none;
+	cursor: pointer;
+	width: 17px;
+}
+
+.appearance_menu {
+	position: absolute;
+	right: 47px;
+	bottom: 47px;
+	background: none;
+	border: none;
+	background: rgba(0,0,0,0.3);
+	padding: 13px;
+	border-radius: 50px;
+	transition: 0.15s;
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+	align-items: center;
+}
+
+.theme_container {
+	display: flex;
+	flex-direction: column;
+}
+
+.theme_container button {
+	height: 17px;
+	width: 17px;
+	border-radius: 100%;
+	margin: 5px 0;
+	background: none;
+	border: none;
+	background: linear-gradient(45deg, green, cyan);
+	cursor: pointer;
+}
+
+.theme_caret_up, .theme_caret_down {
+	background: none;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+.theme_caret_up img, .theme_caret_down img {
+	width: 100%;
+	padding: 2px;
+	opacity: 0.3;
+}
+
+.theme_caret_down {
+	opacity: 0.2;
+	transform: rotate(180deg);
+}
+
+
+
+.appearance_menu > * {
+	transition-property: opacity, visibility;
+	transition-duration: 1s, 0s;
+	transition-delay: 0s, 0s;
+}
+
+.appearance_closed > * {
+	display: none;
+	opacity: 0;
+	transition-delay: 0s, 1s;
+}
+
+.appearance_closed > *:last-child {
+	display: block;
+	opacity: 1;
+}
+
+.appearance_menu.appearance_closed {
+	padding: 10px;
+	bottom: 50px;
+	right: 50px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.appearance_menu.appearance_closed:hover {
+  background: rgba(0,0,0,0.3);
+  padding: 13px;
+  bottom: 47px;
+  right: 47px;
+}
+
+
+
+
+
+.clean_ui_btn {
+	border: none;
+	background: rgba(0, 0, 0, 0.1);
+	height: 17px;
+	width: 17px;
+}
+
+.clean_ui_btn img {
+	opacity: 0.6;
+}
+
+.clean_ui_btn:hover img {
+	opacity: 1;
+}
+
+
+
+.clean_ui_element {
+	transition: 0.5s opacity;
+	opacity: 0;
+}
+
+.clean_ui_element:hover {
+	opacity: 1;
+}
+
+.clean_ui_active {
+	opacity: 0;
+}
+
+.clean_ui_active:hover {
+	opacity: 1;
+}
+
+
+
+
+@media (max-height: 500px) {
+	.song_details_cover {
+		height: 100px;
+		width: 100px;
+	}
+	.song_title {
+		font-size: 29pt;
+	}
+	.song_artist {
+		font-size: 24pt;
+	}
+}
+
+
+@media (max-height: 650px) {
+	.socials_container {display: none;}
+	.controls_container {bottom: 50px;}
+
+	.option_art {visibility: hidden;}
+	.option_text {display: flex; align-items: baseline; max-width: 420px;}
+	.option_text div {max-width: 225px;}
+	.option_text span {display: block;}
+	.vote_option {
+		box-shadow: none;
+		height: 54px;
+		margin-top: 17px;
+	}
+}
+
+@media (max-height: 500px) {
+	.vote_options_container {
+		flex-direction: row;
+	}
+
+	.vote_checkmark, .option_art, .option_text span, .option_artist {
+		display: none !important;
+	}
+
+	.vote_option {
+		justify-content: center;
+		margin: 17px 5px;
+	}
+
+	.vote_container {
+		width: 900px;
+	}
+}
