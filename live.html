@@ -181,8 +181,9 @@
     </div>
 
     <div class="socials_container">
-        <a href="https://www.twitch.tv/sixtysevenradio" title="Twitch" target="_blank" rel="noopener noreferrer"><img src="./assets/twitch.svg"></a>
-        <a href="https://www.youtube.com/c/sixtysevenradio" title="YouTube" target="_blank" rel="noopener noreferrer"><img src="./assets/youtube.svg"></a>
+    	<a href="https://www.youtube.com/c/sixtysevenradio" title="YouTube" target="_blank" rel="noopener noreferrer"><img src="./assets/youtube.svg"></a>
+    	<a href="https://twitter.com/sixtysevenradio" title="Twitter" target="_blank" rel="noopener noreferrer" style="position:relative;top:-1px;"><img src="./assets/twitter.svg"></a>
+        <!--a href="https://www.twitch.tv/sixtysevenradio" title="Twitch" target="_blank" rel="noopener noreferrer"><img src="./assets/twitch.svg"></a-->
         <a href="https://instagram.com/sixtysevenradio" title="Instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram.svg"></a>
         <a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" title="Spotify" target="_blank" rel="noopener noreferrer"><img src="./assets/spotify.svg"></a>
     </div>
@@ -190,9 +191,7 @@
 </body>
 
 <script src="theme.js"></script>
-<script src="fast-average-color.js"></script>
-<script src="Vibrant.js"></script>
-<script src="color-thief.umd.js"></script>
+<script src="color-thief.min.js"></script>
 <script src="hls.js"></script>
 <script type="text/javascript">
 	console.log("%cNothing's ever good enough huh...", "color: springgreen; font-size: 15px");
@@ -484,7 +483,7 @@
 		}
 
 		// FAC
-		const fac = new FastAverageColor();
+		/*const fac = new FastAverageColor();
 		fac.getColorAsync(coverElement, {mode: 'precision', algorithm: 'dominant'}).then(color => {
                 //console.log('FAC:', color)
             }).catch(e => {
@@ -501,7 +500,7 @@
         //	console.log(a[x].getHex())
 		//}
 
-		// Color Theif
+		*/// Color Theif
 		const colorThief = new ColorThief();
 		a = colorThief.getPalette(coverElement);
 		//console.log('theif')
