@@ -235,7 +235,7 @@
         <a href="https://instagram.com/sixtysevenradio" title="Instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram.svg"></a>
         <a href="https://open.spotify.com/playlist/0U7TnsY3xNeMtHYT5aOr6s?si=f69a552fdde748f2" title="Spotify" target="_blank" rel="noopener noreferrer"><img src="./assets/spotify.svg"></a>
     </div>
-    <audio preload="true" id="player" src='' style="display: none" autoplay controls crossorigin>
+    <audio id="player" src='' style="display: none" autoplay controls crossorigin>
 </body>
 
 <script src="color-thief.min.js"></script>
@@ -710,7 +710,12 @@
 	}
 
 	function TogglePlayState() {
-		(audio.paused) ? audio.play() : audio.pause()
+		if (audio.paused) {
+			context.resume();
+			audio.play()
+		} else {
+			audio.pause()
+		}
 	}
 
 	// Voting Socket
