@@ -91,10 +91,15 @@
     <div class="loader"></div>
 
     <div class="appearance_menu appearance_closed">
-    	<button class="theme_caret_up"><img src="assets/caret.svg"></button>
-    	<div class="theme_container">
+
+    	<div>
+    		<button class="theme_caret_up"><img src="assets/caret.svg"></button>
+    		<div style="position:relative; height: calc(27px * 5); overflow: hidden;">
+    			<div class="theme_container"></div>
+    		</div>
+	    	<button class="theme_caret_down"><img src="assets/caret.svg"></button>
     	</div>
-    	<button class="theme_caret_down"><img src="assets/caret.svg"></button>
+    	
     	<button id="CleanUiBtn" title="Hide Controls" onclick="uiToggle();" class="clean_ui_btn"><img src="assets/hidew.svg"></button>
     	<button id="AppearanceBtn" title="Appearance" onclick="OpenAppearance();" class="appearance_btn"><img src="assets/appearance.svg"></button>
     </div>
