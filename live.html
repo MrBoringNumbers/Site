@@ -54,7 +54,7 @@
 </head>
 
 <body>
-
+	<script src="init_theme.js"></script>
 	<div class="theme_blend"></div>
 	
 	<div class="nav_container">
@@ -90,17 +90,16 @@
 
     <div class="loader"></div>
 
-    <div class="appearance_menu appearance_closed">
+    <div class="appearance_menu appearance_closed" onmouseleave="setTheme(window.currentTheme)">
 
-    	<div>
-    		<button class="theme_caret_up"><img src="assets/caret.svg"></button>
-    		<div style="position:relative; height: calc(27px * 5); overflow: hidden;">
-    			<div class="theme_container"></div>
-    		</div>
-	    	<button class="theme_caret_down"><img src="assets/caret.svg"></button>
-    	</div>
+    	<div class="themes hide_scrollbar">
+  			<div class="theme_container">
+  				<input type="radio" name="theme_selection" id="theme_radio_0">
+  				<label title="Auto" for="theme_radio_0" class="special">a</label>
+  			</div>
+  		</div>
     	
-    	<button id="CleanUiBtn" title="Hide Controls" onclick="uiToggle();" class="clean_ui_btn"><img src="assets/hidew.svg"></button>
+    	<button id="CleanUiBtn" title="Hide Controls" onclick="uiToggle();" class="clean_ui_btn"><img src="assets/hideui.svg"></button>
     	<button id="AppearanceBtn" title="Appearance" onclick="OpenAppearance();" class="appearance_btn"><img src="assets/appearance.svg"></button>
     </div>
 
@@ -420,19 +419,30 @@
 	const socials_cont = document.querySelector('.socials_container')
 	const controls_cont = document.querySelector('.controls_container')
 	const nav = document.querySelector('.nav')
+	const uiBtn = document.getElementById('CleanUiBtn')
+	const uiImg = uiBtn.firstChild
 
 	function uiToggle() {
 		//console.log('Toggling Clean UI');
 		socials_cont.classList.toggle('clean_ui_element');
 		controls_cont.classList.toggle('clean_ui_element');
 		nav.classList.toggle('clean_ui_element');
+		if (uiImg.src.endsWith('hideui.svg')) {
+			uiImg.src = "./assets/showui.svg";
+			uiBtn.title = "Show Controls";
+		} else {
+			uiImg.src = "./assets/hideui.svg";
+			uiBtn.title = "Hide Controls";
+		}
 	}
 
 	const appearance_menu = document.querySelector('.appearance_menu')
 	const appearance_btn = document.getElementById('AppearanceBtn')
+	const theme_scroll = document.querySelector('.themes')
 
 	function OpenAppearance() {
 		appearance_menu.classList.remove('appearance_closed')
+		theme_scroll.scrollTop = theme_scroll.scrollHeight;
 		appearance_btn.onclick = CloseAppearance;
 	}
 
@@ -526,58 +536,29 @@
 
 
 	function Auto_Pick_Theme() {
+		if (!window.themes) {setTimeout(Auto_Pick_Theme,1000);return;}
 		coverElement.onload = null
-
-		if (!window.themes) {
-		  	setTimeout(Auto_Pick_Theme, 1000);
-		  	//console.log('delaying auto theme');
-		  	return;
-		}
-
-		// FAC
-		/*const fac = new FastAverageColor();
-		fac.getColorAsync(coverElement, {mode: 'precision', algorithm: 'dominant'}).then(color => {
-                //console.log('FAC:', color)
-            }).catch(e => {
-                //console.log(e);
-            });
-
-        // Vibrant
-        b = new Vibrant(coverElement)
-        b = b.VibrantSwatch.getHex()
-        //console.log('Vibrant:', b)
-
-        //console.log(a)
-        //for (const x of ['DarkMutedSwatch', 'DarkVibrantSwatch', 'LightMutedSwatch', 'LightVibrantSwatch', 'MutedSwatch', 'VibrantSwatch']) {
-        //	console.log(a[x].getHex())
-		//}
-
-		*/// Color Theif
+		// Color Theif
 		const colorThief = new ColorThief();
-		a = colorThief.getPalette(coverElement);
-		//console.log('theif')
-		a.forEach(function(x,i) {
-			//console.log(rgbToHex(x[0], x[1], x[2]))
-		})
-
-		index = getNearestColor(rgbToHex(a[3][0], a[3][1], a[3][2]))
-		setTheme(index)
+		a = colorThief.getPalette(coverElement)[3];
+		index = getNearestColor(rgbToHex(a[0],a[1],a[2]))
+		setTheme(window.themes[index])
 	}
 
-	function setTheme(index) {
-		//console.log('SETTING THEME:', index)
-		if (!window.themes) {
-			//console.log('DELAYING SET THEME...')
-			setTimeout(function() {setTheme(index)}, 1000)
-		} else {
-			themeBlend.style.transitionDuration = '0s';
-			themeBlend.style.backgroundImage = document.body.style.backgroundImage;
-			themeBlend.style.opacity = '1';
-			document.body.style.backgroundImage = window.themes[index]['data'];
-			setTimeout(function() {themeBlend.style.opacity = '0'; themeBlend.style.transitionDuration = '700ms';}, 1)
-			if (window.themes[index].dark) {socials.classList.add('dark')}
-			else {socials.classList.remove('dark')}
-		}	
+	function setTheme(theme_obj) {
+		themeBlend.style.transitionDuration = '0s';
+		themeBlend.style.backgroundImage = document.body.style.backgroundImage;
+		themeBlend.style.opacity = '1';
+		document.body.style.backgroundImage = theme_obj.data;
+		setTimeout(function(){themeBlend.style.opacity='0';themeBlend.style.transitionDuration='700ms';},1)
+		theme_obj.dark ? socials.classList.add('dark') : socials.classList.remove('dark')
+	}
+
+
+	function chooseTheme(theme_obj) {
+		window.currentTheme = theme_obj;
+		setTheme(theme_obj)
+		localStorage.setItem("theme",JSON.stringify(theme_obj));
 	}
 
 
@@ -585,13 +566,21 @@
 	// Set theme buttons
 	const themeCont = document.querySelector('.theme_container')
 	function loadThemeButtons() {
-		window.themes.forEach(function(x,i) {
-			//console.log(x)
-			var btn = document.createElement("button");
-			btn.title = x.name
-			btn.style.backgroundImage = x.data
-			btn.onmouseover = function() {setTheme(i)}
-			themeCont.appendChild(btn)
+		window.themes.forEach(function(x,i){
+			var r = document.createElement("input");
+			r.type = "radio";
+			r.name = "theme_selection";
+			r.id = `theme_radio_${i}`;
+
+			var e = document.createElement("label");
+			e.title = x.name;
+			e.htmlFor = r.id;
+			e.style.backgroundImage = x.data;
+			e.onmouseenter = function(){setTheme(x)}
+			e.onclick = function(){chooseTheme(x)}
+
+			themeCont.appendChild(r)
+			themeCont.appendChild(e)
 		})
 	}
 	
@@ -619,10 +608,6 @@
 
 		var artist = audio.textTracks[0].activeCues[0].value['data'];
 		var song = audio.textTracks[0].activeCues[1].value['data'];
-		//var cover = audio.textTracks[0].activeCues[2].value['data'].replace(/'/g,'"');
-		//if (cover) {cover = JSON.parse(cover)}
-		//cover = JSON.parse('{"640": "https://dummyimage.com/640x640", "300": "https://dummyimage.com/300x300", "120": "https://dummyimage.com/120x120", "60": "https://dummyimage.com/60x60"}')
-
 		var coverIter = Object.entries(cover)
 
 		//console.log('updating song...', artist, song)
@@ -635,18 +620,9 @@
 		coverElement.srcset = ''
 		coverElement.sizes = ''
 
-		if (cover) {
-			//window.onresize = function(){coverElement.src = };
-			coverElement.src = preload.src
-			coverCont.classList.remove('cover_placeholder')
-			coverElement.onload = Auto_Pick_Theme
-		}
-		else {
-			// Default Theme
-			//window.onresize = undefined;
-			coverCont.classList.add('cover_placeholder')
-			setTheme(7)
-		}
+		if (cover) {coverElement.src = preload.src; coverCont.classList.remove('cover_placeholder')}
+		else {coverCont.classList.add('cover_placeholder')}
+		if (window.currentTheme == "Auto") {cover ? coverElement.onload = Auto_Pick_Theme : setTheme(window.themesDefault)}
 
 		if (firstLoad) {
 			loader.classList.add('hide_loader');

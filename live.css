@@ -1,10 +1,6 @@
-:root {
-    --ThemeGradient: linear-gradient(45deg, #0087ff, #101671);
-}
+:root {--ThemeGradient: linear-gradient(45deg, #0087ff, #101671);}
 
-html {
-	height: 100%;
-}
+html {height: 100%;}
 
 @keyframes blend {
 	0%   {opacity: 1;}
@@ -39,8 +35,8 @@ html {
 
 
 body {
+	background: #0087ff;
 	background-image: linear-gradient(45deg, #0087ff, #101671);
-	background-image: var(--ThemeGradient);
 	background-size: 101%, 101%;
 	overflow: hidden;
 	height: 100%;
@@ -48,6 +44,12 @@ body {
 	min-width: 720px;
 	min-height: 400px;
 }
+
+.hide_scrollbar {
+	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide_scrollbar::-webkit-scrollbar {display: none;}
 
 .theme_blend {
 	background-image: linear-gradient(45deg, #0087ff, #101671);
@@ -58,6 +60,7 @@ body {
 	transition-property: opacity, visibility;
 	transition-duration: 700ms;
 	transition-timing-function: linear;
+	opacity: 0;
 	/*animation: 1s blend;*/
 }
 
@@ -683,21 +686,14 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 
-
-.appearance_btn {
-	border: none;
-	background: none;
-	width: 17px;
-}
-
 .appearance_menu {
 	position: absolute;
-	right: 47px;
-	bottom: 47px;
+	right: 48px;
+	bottom: 48px;
 	background: none;
+	padding: 6px;
 	border: none;
 	background: rgba(0,0,0,0.3);
-	padding: 13px;
 	border-radius: 50px;
 	transition: 0.15s;
 	display: flex;
@@ -705,7 +701,56 @@ input[type=range]::-webkit-slider-thumb {
 	justify-content: space-between;
 	cursor: pointer;
 	align-items: center;
-	height: 260px;
+}
+
+.appearance_menu > button {
+	padding: 6px;
+	box-sizing: content-box;
+	border-radius: 50%;
+	transition: background 150ms;
+}
+
+.appearance_menu > button:hover {
+	background: rgba(255,255,255,0.15);
+}
+
+.appearance_menu.appearance_closed > button {
+	padding: 10px;
+}
+
+.appearance_menu.appearance_closed > button:hover {
+	background: none;
+	padding: 12px;
+}
+
+.appearance_menu .appearance_btn {
+	border: none;
+	background: none;
+	width: 17px;
+	transition: all 150ms;
+}
+
+
+
+.themes {
+	position:relative;
+	height: calc(27px * 12);
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 6px;
+	-webkit-mask-image: linear-gradient(0deg, transparent calc(0% + 4px), #000 calc(0% + 8px), #000 calc(100% - 8px), transparent calc(100% - 4px));
+	-webkit-mask-size: min(700px,40vw) auto;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-scroll-width
+}
+
+.themes .special {
+	order: -1;
+	color: white;
+	text-align: center;
+	font-family: 'Bahnschrift', sans-serif;
+	overflow: hidden;
+	line-height: 100%;
 }
 
 .theme_container {
@@ -713,15 +758,26 @@ input[type=range]::-webkit-slider-thumb {
 	flex-direction: column;
 }
 
-.theme_container button {
+.theme_container input {display: none;}
+
+.theme_container label:hover {
+	box-shadow: 2px 2px 4px #00000057;
+	transform: scale(1.2);
+}
+
+.theme_container input:checked + label {outline: 2px solid white;}
+
+.theme_container label {
 	height: 17px;
 	width: 17px;
 	border-radius: 100%;
 	margin: 5px 0;
 	background: none;
 	border: none;
-	background: linear-gradient(45deg, green, cyan);
+	background: rgba(255,255,255,0.15);
 	cursor: pointer;
+	outline-color: white;
+	transition: 50ms;
 }
 
 .theme_caret_up, .theme_caret_down {
@@ -752,33 +808,31 @@ input[type=range]::-webkit-slider-thumb {
 
 .appearance_menu > * {
 	transition-property: opacity, visibility;
-	transition-duration: 1s, 0s;
+	transition-duration: 0s, 0s;
 	transition-delay: 0s, 0s;
 }
 
 .appearance_closed > * {
-	visibility: collapse;
-	opacity: 0;
+	display: none;
 }
 
 .appearance_closed > *:last-child {
-	visibility: visible;
+	display: block;
 	opacity: 1;
 }
 
 .appearance_menu.appearance_closed {
-	padding: 10px;
 	bottom: 50px;
 	right: 50px;
 	background: rgba(0, 0, 0, 0.1);
 	height: unset;
+	padding: 0;
 }
 
 .appearance_menu.appearance_closed:hover {
   background: rgba(0,0,0,0.3);
-  padding: 13px;
-  bottom: 47px;
-  right: 47px;
+  bottom: 48px;
+  right: 48px;
 }
 
 
@@ -790,14 +844,6 @@ input[type=range]::-webkit-slider-thumb {
 	background: none;
 	height: 17px;
 	width: 17px;
-}
-
-.clean_ui_btn img {
-	opacity: 0.6;
-}
-
-.clean_ui_btn:hover img {
-	opacity: 1;
 }
 
 
