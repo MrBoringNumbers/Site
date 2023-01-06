@@ -441,13 +441,18 @@
 	const theme_scroll = document.querySelector('.themes')
 
 	function OpenAppearance() {
+		document.onmousedown = function(e){
+			if (!appearance_menu.contains(e.explicitOriginalTarget)) {CloseAppearance()}
+			e.stopPropagation()
+		};
 		appearance_menu.classList.remove('appearance_closed')
 		theme_scroll.scrollTop = theme_scroll.scrollHeight;
 		appearance_btn.onclick = CloseAppearance;
 	}
 
 	function CloseAppearance() {
-		appearance_menu.classList.add('appearance_closed')
+		document.onmousedown = null;
+		appearance_menu.classList.add('appearance_closed');
 		appearance_btn.onclick = OpenAppearance;
 	}
 
