@@ -94,8 +94,8 @@
 
     	<div class="themes hide_scrollbar">
   			<div class="theme_container">
-  				<input type="radio" name="theme_selection" id="theme_radio_0">
-  				<label title="Auto" for="theme_radio_0" class="special">a</label>
+  				<input type="radio" name="theme_selection" id="theme_radio_-1">
+  				<label title="Auto" for="theme_radio_-1" class="special" onclick="chooseTheme('Auto')" onmouseenter="setTheme('Auto')">a</label>
   			</div>
   		</div>
     	
@@ -530,28 +530,32 @@
 		  };
 		  
 		})
-		//console.log('Theme Auto Select:', index)
 		return index
 	}
 
 
 	function Auto_Pick_Theme() {
-		if (!window.themes) {setTimeout(Auto_Pick_Theme,1000);return;}
-		coverElement.onload = null
-		// Color Theif
-		const colorThief = new ColorThief();
-		a = colorThief.getPalette(coverElement)[3];
-		index = getNearestColor(rgbToHex(a[0],a[1],a[2]))
-		setTheme(window.themes[index])
+		if (!window.themes) {setTimeout(Auto_Pick_Theme,1000);console.warn('Themes loading delayed.');return;}
+		if (cover) {
+			const colorThief = new ColorThief();
+			a = colorThief.getPalette(coverElement)[3];
+			index = getNearestColor(rgbToHex(a[0],a[1],a[2]))
+			setTheme(window.themes[index])
+		} else {setTheme(window.themesDefault);}
 	}
 
 	function setTheme(theme_obj) {
-		themeBlend.style.transitionDuration = '0s';
-		themeBlend.style.backgroundImage = document.body.style.backgroundImage;
-		themeBlend.style.opacity = '1';
-		document.body.style.backgroundImage = theme_obj.data;
-		setTimeout(function(){themeBlend.style.opacity='0';themeBlend.style.transitionDuration='700ms';},1)
-		theme_obj.dark ? socials.classList.add('dark') : socials.classList.remove('dark')
+		if (theme_obj=="Auto") {
+			Auto_Pick_Theme()
+		} else {
+			themeBlend.style.transitionDuration = '0s';
+			themeBlend.style.backgroundImage = document.body.style.backgroundImage;
+			themeBlend.style.opacity = '1';
+			document.body.style.backgroundImage = theme_obj.data;
+			setTimeout(function(){themeBlend.style.opacity='0';themeBlend.style.transitionDuration='700ms';},1)
+			//console.log(socials.classList)
+			theme_obj.dark ? socials.classList.add('dark') : socials.classList.remove('dark')
+		}
 	}
 
 
@@ -622,7 +626,7 @@
 
 		if (cover) {coverElement.src = preload.src; coverCont.classList.remove('cover_placeholder')}
 		else {coverCont.classList.add('cover_placeholder')}
-		if (window.currentTheme == "Auto") {cover ? coverElement.onload = Auto_Pick_Theme : setTheme(window.themesDefault)}
+		if (window.currentTheme=="Auto" && cover) {coverElement.onload = function(){Auto_Pick_Theme();this.onload=null}}
 
 		if (firstLoad) {
 			loader.classList.add('hide_loader');
