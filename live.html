@@ -121,42 +121,42 @@
     <div class="eq_container" style="display: none">
     	<div>
     		<span>50</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq1_slider" oninput="Update_Eq(this.value,0);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq1_slider" oninput="Update_Eq(this.value,0);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>100</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq2_slider" oninput="Update_Eq(this.value,1);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq2_slider" oninput="Update_Eq(this.value,1);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>300</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq3_slider" oninput="Update_Eq(this.value,2);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq3_slider" oninput="Update_Eq(this.value,2);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>600</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq4_slider" oninput="Update_Eq(this.value,3);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq4_slider" oninput="Update_Eq(this.value,3);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>1.2k</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq5_slider" oninput="Update_Eq(this.value,4);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq5_slider" oninput="Update_Eq(this.value,4);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>2.4k</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq6_slider" oninput="Update_Eq(this.value,5);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq6_slider" oninput="Update_Eq(this.value,5);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>3.5k</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq7_slider" oninput="Update_Eq(this.value,6);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq7_slider" oninput="Update_Eq(this.value,6);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     	<div>
     		<span>6k</span>
-    		<input class="vertical_minimal_slider" type="range" min="0" max="100" value="70" id="eq8_slider" oninput="Update_Eq(this.value,7);">
+    		<input class="vertical minimal_slider" type="range" min="0" max="100" value="70" id="eq8_slider" oninput="Update_Eq(this.value,7);">
     		<span id="eq_label">-0.0db</span>
     	</div>
     </div>
@@ -210,6 +210,10 @@
 
     	<div class="volume_container">
     		<button id="muteBtn" title="Mute" onclick="MuteToggle();"><img src="assets/volume-low.svg"></button>
+    		<!--div id="VolumeSlider" class="div_minimal_slider">
+    			<input type="range" style="display: none;" min="0" max="100" value="100" id="VolumeInput" oninput="audio.volume=this.value/100;this.nextSibling.transform=`translateX(-${this.value}%)`" onchange="audio.volume=this.value/100;">
+    			<div></div>
+    		</div-->
     		<input type="range" min="0" max="100" value="100" class="minimal_slider" id="VolumeSlider" oninput="audio.volume=this.value/100;" onchange="audio.volume=this.value/100;">
     	</div>
     	
@@ -255,6 +259,7 @@
 	const loader = document.querySelector('.loader')
 	const vote_loader = document.getElementById('voteLoader')
 	const volume_slider = document.getElementById('VolumeSlider')
+
 
 	// Connect EQ
 	var context = new (window.AudioContext || window.webkitAudioContext)();
@@ -382,7 +387,9 @@
 	}
 
 	const vote_cont = document.querySelector('.vote_container')
+	var vote_open = false
 	function OpenVote(count) {
+		if (details.classList.contains('miniplayer')) {return};
 		count = parseInt(count)
 		Miniplayer();
 		if (count >= 0) {
@@ -396,20 +403,23 @@
 		vote_cont.style.visibility = '';
 		vote_cont.style.transition = '';
 		details.onclick = CloseVote;
+		vote_open = true
 	}
 
 	function CloseVote(clean) {
+		console.log('CLOSE VOTE')
 		vote_cont.classList.remove('vote_active')
 		if (clean === 1) {vote_cont.style.transition = 'visibility 1s'; vote_cont.style.visibility = 'hidden'; setTimeout(Mainplayer,500);}
 		else {vote_cont.style.transition = ''; vote_cont.style.visibility = 'hidden'; Mainplayer();}
 		details.onclick = '';
+		vote_open = false
 	}
 
 	// Update EQ Bands
-	eq_sliders = document.querySelectorAll('.vertical_minimal_slider')
+	eq_sliders = document.querySelectorAll('.vertical.minimal_slider')
 	eq_labels = document.querySelectorAll('#eq_label')
 	function Update_Eq(value, i) {
-		f = (value-80)/5
+		f = (value-70)/5
 		eq_labels[i].innerHTML = f.toFixed(1) + 'db';
 		eq_bands[i].gain.value = f;
 	}
@@ -721,7 +731,7 @@
 					if (i!=msg) {e.classList.remove('vote_selected'); option_inputs[i].disabled = true;}
 					else {e.classList.add('vote_selected')}
 				});
-				setTimeout(function(){CloseVote(1)},2000)
+				if (vote_open) {setTimeout(function(){CloseVote(1)},2000)}
 			}
 		}
 	};
