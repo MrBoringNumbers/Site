@@ -264,18 +264,18 @@
             grecaptcha.execute('6LcobN8jAAAAAElaJ972O9p8a9mIYMypw4HJ7B63', {action: 'submit'}).then(function(token) {
                 data = new FormData(form)
                 data['g-recaptcha-response'] = token
+                console.log(data)
                 fetch(form.action, {
                     method: "POST",
                     body: data,
                 }).then(
-                    response => console.log(response.json())
+                    response => response.json()
                 ).then((html) => {
                     contactName.disabled = true;
                     contactEmail.disabled = true;
                     contactBody.disabled = true;
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = 'Sent';
-                    SuccessMessage();
                 });
             });
         });
