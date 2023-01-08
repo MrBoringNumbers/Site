@@ -75,6 +75,8 @@
     display: block;
 }
 
+.live_indicator {display: none;}
+
 .scrolled_nav {
     max-height: 100%;
 }
