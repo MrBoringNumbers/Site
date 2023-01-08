@@ -48,8 +48,7 @@
 }
 
 .logo {
-    padding: 0 20px;
-    padding-left: max(20px, env(safe-area-inset-left));
+    margin-left: max(20px, env(safe-area-inset-left));
     transition: filter 0.3s;
 }
 
