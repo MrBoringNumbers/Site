@@ -172,7 +172,7 @@ a {
     animation-delay: inherit;
 }
 
-.no-select {
+.no-select, img, svg {
     user-select: none; /* supported by Chrome and Opera */
    -webkit-user-select: none; /* Safari */
    -khtml-user-select: none; /* Konqueror HTML */
@@ -424,3 +424,5 @@ a {
     color: white !important;
     transform: scale(1.1);
 }
+
+.grecaptcha-badge {visibility: hidden;}

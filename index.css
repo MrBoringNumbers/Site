@@ -10,6 +10,11 @@
   100% {background-position: 0 center}
 }
 
+@keyframes flash {
+    0%,40%   {outline-width: 0; outline-color: rgba(255,255,255,0.9);}
+    100% {outline-width: 15px; outline-color: rgba(255,255,255,0);}
+}
+
 /* End Animations */
 
 
@@ -220,6 +225,12 @@ form textarea {
     height: 100%;
 }
 
+form small {
+    color: rgba(255,255,255,0.3);
+    font-family: 'arial';
+    font-size: 10pt;
+}
+
 .Form_Type {
     padding: 10px 15px;
     border: 1px solid #6d4f9b;
@@ -242,7 +253,7 @@ form textarea {
     transition: 0.3s;
     cursor: pointer;
     margin: 0 auto;
-    margin-top: 2px;
+    margin-top: 17px;
     font-size: 0.8em;
 }
 

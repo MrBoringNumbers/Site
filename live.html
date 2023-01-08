@@ -266,7 +266,7 @@
 	var audio = document.querySelector('audio')
 	var source = context.createMediaElementSource(audio);
 
-	audio.textTracks.onaddtrack = function(event) {event.track.oncuechange=UpdateSong; this.onaddtrack=null;}
+	audio.textTracks.onaddtrack = function(event) {this.onaddtrack=null; event.track.cues = Array(event.track.cues).slice(0,3); event.track.oncuechange=UpdateSong;}
 	audio.onplay = function() {playImg.src='./assets/pause.svg'; audio.currentTime = hls.liveSyncPosition; hls.startLoad(); navigator.mediaSession.playbackState = "playing"; playBtn.classList.remove('press_to_play_indicator')}
 	audio.onpause = function() {playImg.src='./assets/play.svg'; hls.stopLoad(); navigator.mediaSession.playbackState = "paused";}
 	audio.oncanplay = function() {this.volume=volume_slider.value/100}
@@ -308,35 +308,27 @@
 			var option = document.createElement("button");
 			option.innerHTML = e.bitrate/1000 + 'kbps';
 			if (e.bitrate == 320000) {option.innerHTML += ' '; var sup = document.createElement("sup"); sup.innerHTML = 'HD'; sup.style.fontWeight = '500'; option.append(sup);}
-			else if (e.bitrate == 256000) {/*hls.autoLevelCapping = i;*/}
-			//option.setAttribute("onclick", "UpdateSong("+i+")");
-			option.id = ''
+			else if (e.bitrate == 256000) {hls.autoLevelCapping = i;}
 			option.setAttribute("onclick", "hls.loadLevel="+i+";");
 			quality_menu.prepend(option);
 		})
 
 		var option = document.createElement("button");
 		option.innerHTML = 'Auto';
-		option.setAttribute("onclick", "UpdateSong(-1)");
-		option.id = ''
+		option.setAttribute("onclick", "hls.loadLevel=-1");
 		quality_menu.append(option);
 	}
 
 	// Start Audio Stream
 	if (Hls.isSupported()) {
 		var hls = new Hls();
-		//hls.config.debug = true;
-		//hls.loadSource('https://stream.ram.radio/audio/ram.stream_aac/playlist.m3u8');
-		//hls.loadSource('./hls/index.m3u8');
 		hls.loadSource(server+'/index.m3u8');
 		hls.attachMedia(audio);
 		hls.on(Hls.Events.LEVEL_UPDATED, Preload_Cover)
 		hls.on(Hls.Events.MANIFEST_PARSED, Set_Qualities);
 		hls.on(Hls.Events.LEVEL_SWITCHING, function(e,d) {
-			//console.log(e,d)
 			quality_label.innerHTML = hls.levels[d.level].bitrate/1000+"kbps"
-			//quality_menu.children.forEach(e.classList.remove('bitrate_active'))
-			//quality_levels[d.level].classList.add('bitrate_active')
+			//quality_label.innerHTML = quality_menu.children[d.level].innerHTML;
 		})
 	}
 
@@ -629,6 +621,8 @@
 		var artist = audio.textTracks[0].activeCues[0].value['data'];
 		var song = audio.textTracks[0].activeCues[1].value['data'];
 		var coverIter = Object.entries(cover)
+
+		console.log('UPDATING...', song)
 
 		//console.log('updating song...', artist, song)
 

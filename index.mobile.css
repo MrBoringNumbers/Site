@@ -223,6 +223,8 @@ form textarea {
     height: 10em;
 }
 
+form small {color: rgba(0,0,0,0.3);}
+
 .Form_Type {
     padding: 10px 15px;
     border: 1px solid #c58cff;
@@ -247,7 +249,7 @@ form textarea {
     opacity: 1;
     cursor: pointer;
     margin: 0 auto;
-    margin-top: 2px;
+    margin-top: 17px;
     font-size: min(15pt, 6vw);
 }
 

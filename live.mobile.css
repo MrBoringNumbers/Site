@@ -1,0 +1,39 @@
+#EqBtn, .volume_container, .bitrate_wave, .bitrate_container, .appearance_btn {
+	display: none !important;
+}
+
+.song_details_container {
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+
+.song_meta_container {
+	margin-top: 15px;
+}
+
+.song_details_cover {
+	margin: 0;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.song_title {
+	font-size: 20pt;
+	text-align: center;
+}
+
+.song_artist {
+	font-size: 17pt;
+	text-align: center;
+}
+
+.controls_container {
+	align-items: center;
+	flex-direction: column;
+}
+
+@media (max-height: 360px) {
+	.controls_container {display: none;}
+	.song_details_container {transform: translate(-50%,calc(-50% + 20px)) !important;}
+}
