@@ -244,10 +244,11 @@
 
     // Form Success Confirmation
     const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById("Form_Submit")
-    const contactName = document.getElementById("Contact_Name")
-    const contactEmail = document.getElementById("Contact_Email")
-    const contactBody = document.getElementById("Contact_Body")
+    const submitBtn = document.getElementById("Form_Submit");
+    const contactName = document.getElementById("Contact_Name");
+    const contactEmail = document.getElementById("Contact_Email");
+    const contactBody = document.getElementById("Contact_Body");
+    var data;
 
     function onCaptchaSubmit(token) {form.submit();}
 
@@ -256,10 +257,11 @@
         e.preventDefault();
         grecaptcha.ready(function() {
             grecaptcha.execute('6LcobN8jAAAAAElaJ972O9p8a9mIYMypw4HJ7B63', {action: 'submit'}).then(function(token) {
-                form.prepend(`<input type="hidden" name="g-recaptcha-response" value="${token}">`);
+                data = new FormData(form)
+                data['g-recaptcha-response'] = token
                 fetch(form.action, {
                     method: "POST",
-                    body: new FormData(form),
+                    body: data,
                 }).then(
                     response => console.log(response.json())
                 ).then((html) => {
