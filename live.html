@@ -45,9 +45,9 @@
 <link rel="icon" type="image/x-icon" href="assets/fav.ico">
 <link rel="apple-touch-icon" href="./assets/iphone-icon.png"/>
 <link rel="stylesheet" href="general_style.css">
-<link rel="stylesheet" media="screen and (max-width: 800px)" href="general_style.mobile.css">
+<link rel="stylesheet" media="screen and (max-width: 700px)" href="general_style.mobile.css">
 <link rel="stylesheet" href="live.css">
-<link rel="stylesheet" media="screen and (max-width: 800px)" href="live.mobile.css">
+<link rel="stylesheet" media="screen and (max-width: 700px)" href="live.mobile.css">
 
 <script src="mobileCheck.js"></script>
 
@@ -452,7 +452,8 @@
 
 	function OpenAppearance() {
 		document.onmousedown = function(e){
-			if (!appearance_menu.contains(e.explicitOriginalTarget)) {CloseAppearance()}
+			console.log(e, e.target, appearance_menu.contains(e.target))
+			if (!appearance_menu.contains(e.target)) {CloseAppearance()}
 			e.stopPropagation()
 		};
 		appearance_menu.classList.remove('appearance_closed')

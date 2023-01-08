@@ -41,8 +41,6 @@ body {
 	overflow: hidden;
 	height: 100%;
 	position: relative;
-	min-width: 720px;
-	min-height: 400px;
 }
 
 .hide_scrollbar {
@@ -503,11 +501,12 @@ body {
 .minimal_slider::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 7px;
-	width: 1px;
+	width: 0;
 	background: white;
 	pointer-events: none;
 	border-radius: 10px;
-	transform: scaleX(130) translateX(-50%);
+	outline: 130px solid white;
+	clip-path: inset(0 0 0 -130px round 10px);
 }
 
 
