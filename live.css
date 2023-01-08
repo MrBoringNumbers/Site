@@ -519,6 +519,10 @@ body {
 	min-width: 100px;
 }
 
+.vertical.minimal_slider::-moz-range-progress {
+  height: 12px;
+}
+
 .vertical.minimal_slider::-webkit-slider-thumb {
 	height: 12px;
 	transform: scaleX(400) translateX(-50%);
