@@ -151,6 +151,10 @@
                             <input id="Contact_Name" class="Form_Type Para_1" type="text" name="Name" placeholder="Name" required>
                             <input id="Contact_Email" class="Form_Type Para_1" type="text" name="Email" placeholder="Email" required>
                             <textarea id="Contact_Body" class="Form_Type Para_1" style="min-height: 0;" type="text" name="Message" placeholder="Message" required></textarea>
+                            <button class="g-recaptcha" 
+                                data-sitekey="6LcobN8jAAAAAElaJ972O9p8a9mIYMypw4HJ7B63" 
+                                data-callback='onCaptchaSubmit'
+                                data-action='submit'>Submit</button>
                             <button type="submit" id="Form_Submit" class="Form_Submit Para_1">Send</button>
                         </form>
                     </div>
@@ -184,6 +188,7 @@
 
 </body>
 
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="mobile-menu-toggle.js"></script>
 <script src="observer.js"></script>
 <script src="globe.js"></script>
@@ -243,6 +248,8 @@
     const contactName = document.getElementById("Contact_Name")
     const contactEmail = document.getElementById("Contact_Email")
     const contactBody = document.getElementById("Contact_Body")
+
+    function onCaptchaSubmit(token) {form.submit();}
 
     form.addEventListener("submit", e => {
         submitBtn.innerHTML = 'Sending...';
