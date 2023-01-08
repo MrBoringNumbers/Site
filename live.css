@@ -520,13 +520,13 @@ body {
 	min-width: 100px;
 }
 
-.vertical.minimal_slider::-moz-range-progress {
-  height: 12px;
-}
+.vertical.minimal_slider::-moz-range-progress {height: 12px;}
 
 .vertical.minimal_slider::-webkit-slider-thumb {
 	height: 12px;
-	transform: scaleX(400) translateX(-50%);
+	outline: 400px solid white;
+	clip-path: inset(0 0 0 -400px round 10px);
+	clip-path: inset(0 0 0 calc(-1 * min(calc(100vh - 400px), 400px)) round 10px);
 }
 
 
