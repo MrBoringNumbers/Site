@@ -502,13 +502,14 @@ body {
 /* Chrome */
 .minimal_slider::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	height: 7px;
+	height: 9px;
 	width: 0;
 	background: white;
 	pointer-events: none;
 	border-radius: 10px;
 	outline: 130px solid white;
 	clip-path: inset(0 0 0 -130px round 10px);
+	margin-top: 1px;
 }
 
 
@@ -527,6 +528,7 @@ body {
 	outline: 400px solid white;
 	clip-path: inset(0 0 0 -400px round 10px);
 	clip-path: inset(0 0 0 calc(-1 * min(calc(100vh - 400px), 400px)) round 10px);
+	margin-top: 0;
 }
 
 
