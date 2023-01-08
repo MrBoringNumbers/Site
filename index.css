@@ -231,6 +231,8 @@ form small {
     font-size: 10pt;
 }
 
+form small a {color: #935de3;}
+
 .Form_Type {
     padding: 10px 15px;
     border: 1px solid #6d4f9b;

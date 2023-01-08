@@ -224,6 +224,7 @@ form textarea {
 }
 
 form small {color: rgba(0,0,0,0.3);}
+form small a {color: #c58cff;}
 
 .Form_Type {
     padding: 10px 15px;
