@@ -147,7 +147,7 @@
                     <div id="Contact_Form_Details_Container" class="Contact_Form_Details_Container">
                         <h1 class="Para_1 Contact_Title animate_observer">Contact</h1>
 
-                        <form method="post" id="contact-form" style="overflow: hidden; display: flex; flex-direction: column; height: 100%;" action="https://script.google.com/macros/s/AKfycbw1ze6jhI06oHvEcKrIJbsIzzKsl_-lPZLE3fV7UPF4MPrZBKrDJSXUi284pdkv1C1w/exec">
+                        <form method="post" id="contact-form" style="overflow: hidden; display: flex; flex-direction: column; height: 100%;" action="https://script.google.com/macros/s/AKfycbz9xaPx-k6TpHaxve-psR2zUzkFG2uSMnpuodgNnV7X0ZOwbSKRc22a0HpG8lRlzkRo/exec">
                             <input id="Contact_Name" class="Form_Type Para_1" type="text" name="Name" placeholder="Name" required>
                             <input id="Contact_Email" class="Form_Type Para_1" type="text" name="Email" placeholder="Email" required>
                             <textarea id="Contact_Body" class="Form_Type Para_1" style="min-height: 0;" type="text" name="Message" placeholder="Message" required></textarea>
@@ -263,7 +263,7 @@
         grecaptcha.ready(function() {
             grecaptcha.execute('6LcobN8jAAAAAElaJ972O9p8a9mIYMypw4HJ7B63', {action: 'submit'}).then(function(token) {
                 data = new FormData(form)
-                data['g-recaptcha-response'] = token
+                data.append('g-recaptcha-response', token)
                 console.log(data)
                 fetch(form.action, {
                     method: "POST",
