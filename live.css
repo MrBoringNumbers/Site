@@ -508,6 +508,7 @@ body {
 	pointer-events: none;
 	border-radius: 10px;
 	outline: 130px solid white;
+	-webkit-clip-path: inset(0 0 0 -130px round 10px);
 	clip-path: inset(0 0 0 -130px round 10px);
 	margin-top: 1px;
 }
