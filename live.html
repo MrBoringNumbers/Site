@@ -268,7 +268,6 @@
 	const volume_slider = document.getElementById('VolumeSlider')
 	const unsupportedWarn = document.querySelector('.unsupported_warn')
 
-
 	// Connect EQ
 	var context = new (window.AudioContext || window.webkitAudioContext)();
 	var audio = document.querySelector('audio')
@@ -328,12 +327,12 @@
 	}
 
 	// Start Audio Stream
-	if (Hls.isSupported()) {
+	if (0 && Hls.isSupported()) {
 		var hls = new Hls();
 		hls.loadSource(server+'/index.m3u8');
 		hls.attachMedia(audio);
 		hls.on(Hls.Events.LEVEL_UPDATED, Preload_Cover)
-		hls.on(Hls.Events.MANIFEST_PARSED, Set_Qualities);
+		hls.on(Hls.Events.MANIFEST_PARSED, function() {Set_Qualities(); setupVotingSocket();});
 		hls.on(Hls.Events.LEVEL_SWITCHING, function(e,d) {
 			quality_label.innerHTML = hls.levels[d.level].bitrate/1000+"kbps"
 			//quality_label.innerHTML = quality_menu.children[d.level].innerHTML;
@@ -725,22 +724,24 @@
 	}
 
 	// Voting Socket
-	let vote_socket = new WebSocket(socket_addr);
-	vote_socket.onmessage = function(event) {
-		msg = Number(event.data)
-		if (msg != undefined) {
-			if (msg < 0) {OpenVote(-1*msg);}
-			else {
-				//console.log('Vote result:', msg)
-				vote_loader.style.display = 'none';
-				vote_options.forEach(function(e,i){
-					if (i!=msg) {e.classList.remove('vote_selected'); option_inputs[i].disabled = true;}
-					else {e.classList.add('vote_selected')}
-				});
-				if (vote_open) {setTimeout(function(){CloseVote(1)},2000)}
+	function setupVotingSocket() {
+		let vote_socket = new WebSocket(socket_addr);
+		vote_socket.onmessage = function(event) {
+			msg = Number(event.data)
+			if (msg != undefined) {
+				if (msg < 0) {OpenVote(-1*msg);}
+				else {
+					vote_loader.style.display = 'none';
+					vote_options.forEach(function(e,i){
+						if (i!=msg) {e.classList.remove('vote_selected'); option_inputs[i].disabled = true;}
+						else {e.classList.add('vote_selected')}
+					});
+					if (vote_open) {setTimeout(function(){CloseVote(1)},2000)}
+				}
 			}
-		}
-	};
+		};
+	}
+	
 
 </script>
 <script src="theme.js"></script>
