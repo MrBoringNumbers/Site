@@ -95,6 +95,30 @@ body {
 	vertical-align: middle;
 }
 
+.unsupported_warn {
+	color: white;
+	font-size: 17pt;
+	font-weight: 300;
+	font-family: 'Bahnschrift', sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	max-width: 280px;
+	mix-blend-mode: luminosity;
+}
+
+.unsupported_warn img {
+	height: 110px;
+	display: block;
+	margin: 0 auto 20px auto;
+}
+
+.unsupported_warn h1, .unsupported_warn h2 {margin-top: 15px;}
+.unsupported_warn h2 {font-size: 13pt;}
+.unsupported_warn p {font-size: 11pt; opacity: 0.75;}
+
 .press_to_play_indicator {
 	outline: 0px solid rgba(255,255,255,0);
 	border-radius: 50%;

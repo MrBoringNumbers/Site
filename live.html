@@ -90,6 +90,13 @@
 
     <div class="loader"></div>
 
+    <div class="unsupported_warn" style="display: none;">
+    	<img src="./assets/retropc.svg">
+    	<h1>This Device is Unsupported.</h1>
+    	<p>(we're working on it.)</p>
+    	<h2>Try using Firefox or Chrome on Desktop.</h2>
+    </div>
+
     <div class="appearance_menu appearance_closed" onmouseleave="setTheme(window.currentTheme)">
 
     	<div class="themes hide_scrollbar">
@@ -252,13 +259,14 @@
 	console.log("%cNothing's ever good enough huh...", "color: springgreen; font-size: 15px");
 	console.log("%cIf you have any recomendations, let us know at contatc@sixtysevenradio.com", "color: springgreen;")
 
-	const server = 'https://cdn.sixtysevenradio.com'
+	const server = 'shttps://cdn.sixtysevenradio.com'
 	const socket_addr = 'wss://cdn.sixtysevenradio.com:8088'
 	const playImg = document.getElementById('PausePlayImg');
 	const playBtn = document.getElementById('PausePlayBtn');
 	const loader = document.querySelector('.loader')
 	const vote_loader = document.getElementById('voteLoader')
 	const volume_slider = document.getElementById('VolumeSlider')
+	const unsupportedWarn = document.querySelector('.unsupported_warn')
 
 
 	// Connect EQ
@@ -320,7 +328,7 @@
 	}
 
 	// Start Audio Stream
-	if (Hls.isSupported()) {
+	if (0 && Hls.isSupported()) {
 		var hls = new Hls();
 		hls.loadSource(server+'/index.m3u8');
 		hls.attachMedia(audio);
@@ -330,6 +338,9 @@
 			quality_label.innerHTML = hls.levels[d.level].bitrate/1000+"kbps"
 			//quality_label.innerHTML = quality_menu.children[d.level].innerHTML;
 		})
+	} else {
+		loader.classList.add('hide_loader');
+		unsupportedWarn.style.display = "";
 	}
 
 
