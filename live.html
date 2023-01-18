@@ -328,7 +328,7 @@
 	}
 
 	// Start Audio Stream
-	if (0 && Hls.isSupported()) {
+	if (Hls.isSupported()) {
 		var hls = new Hls();
 		hls.loadSource(server+'/index.m3u8');
 		hls.attachMedia(audio);
