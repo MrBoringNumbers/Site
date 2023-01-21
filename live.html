@@ -409,7 +409,7 @@
 	}
 
 	function CloseVote(clean) {
-		console.log('CLOSE VOTE')
+		//console.log('CLOSE VOTE')
 		vote_cont.classList.remove('vote_active')
 		if (clean === 1) {vote_cont.style.transition = 'visibility 1s'; vote_cont.style.visibility = 'hidden'; setTimeout(Mainplayer,500);}
 		else {vote_cont.style.transition = ''; vote_cont.style.visibility = 'hidden'; Mainplayer();}
@@ -454,7 +454,6 @@
 
 	function OpenAppearance() {
 		document.onmousedown = function(e){
-			console.log(e, e.target, appearance_menu.contains(e.target))
 			if (!appearance_menu.contains(e.target)) {CloseAppearance()}
 			e.stopPropagation()
 		};
@@ -632,8 +631,6 @@
 		var song = audio.textTracks[0].activeCues[1].value['data'];
 		var coverIter = Object.entries(cover)
 
-		console.log('UPDATING...', song)
-
 		//console.log('updating song...', artist, song)
 
 		artistElement.innerHTML = artist;
@@ -724,8 +721,9 @@
 	}
 
 	// Voting Socket
+	let vote_socket;
 	function setupVotingSocket() {
-		let vote_socket = new WebSocket(socket_addr);
+		vote_socket = new WebSocket(socket_addr);
 		vote_socket.onmessage = function(event) {
 			msg = Number(event.data)
 			if (msg != undefined) {
