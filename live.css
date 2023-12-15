@@ -296,7 +296,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 500px;
+	width: 580px;
 	z-index: 1;
 	position: absolute;
 	left: 50%;
@@ -960,3 +960,8 @@ body {
 		width: 900px;
 	}
 }
+
+
+.fullscreen_btn {height: 30px;}
+.fullscreen_btn img        {content: url("assets/fullscreen.svg");}
+.fullscreen_btn.active img {content: url("assets/fullscreen-exit.svg");}

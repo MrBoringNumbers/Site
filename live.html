@@ -214,6 +214,7 @@
     <div class="controls_container">
     	<button id="PausePlayBtn" title="Pause" onclick="TogglePlayState();"><img id="PausePlayImg" src="assets/play.svg" onload=""></button>
     	<button id="EqBtn" title="Equalizer" onclick="OpenEQ();"><img src="assets/eq.svg"></button>
+    	<button id="FullscreenBtn" title="Fullscreen" class="fullscreen_btn" onclick="ToggleFullscreen();"><img></button>
 
     	<div class="volume_container">
     		<button id="muteBtn" title="Mute" onclick="MuteToggle();"><img src="assets/volume-low.svg"></button>
@@ -738,6 +739,16 @@
 				}
 			}
 		};
+	}
+
+
+	// Fullscreen
+	function ToggleFullscreen() {
+		if (document.fullscreenEnabled === null) {
+			document.documentElement.requestFullscreen();
+		} else {
+			document.exitFullscreen();
+		}
 	}
 	
 
