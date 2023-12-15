@@ -743,11 +743,16 @@
 
 
 	// Fullscreen
+	const fullscreenBtn = document.getElementById('FullscreenBtn');
 	function ToggleFullscreen() {
-		if (document.fullscreenEnabled === null) {
+		if (document.fullscreenElement) {
 			document.documentElement.requestFullscreen();
+			fullscreenBtn.classList.add('active');
+			fullscreenBtn.title = 'Exit Fullscreen';
 		} else {
 			document.exitFullscreen();
+			fullscreenBtn.classList.remove('active');
+			fullscreenBtn.title = 'Fullscreen';
 		}
 	}
 	
