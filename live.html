@@ -747,11 +747,11 @@
 	function ToggleFullscreen() {
 		if (document.fullscreenElement) {
 			document.exitFullscreen();
-			fullscreenBtn.classList.remove('active');
+			fullscreenBtn.classList.remove('exit');
 			fullscreenBtn.title = 'Fullscreen';
 		} else {
 			document.documentElement.requestFullscreen();
-			fullscreenBtn.classList.add('active');
+			fullscreenBtn.classList.add('exit');
 			fullscreenBtn.title = 'Exit Fullscreen';
 		}
 	}
