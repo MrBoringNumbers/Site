@@ -1,7 +1,3 @@
-#EqBtn, .volume_container, .bitrate_wave, .bitrate_container, .appearance_btn {
-	display: none !important;
-}
-
 .song_details_container {
 	flex-direction: column;
 	width: 100%;
@@ -32,6 +28,9 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+.controls_container > * {display: none !important;}
+#PausePlayBtn {display: initial !important;}
 
 @media (max-height: 360px) {
 	.controls_container {display: none;}
